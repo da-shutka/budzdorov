@@ -1,2 +1,2 @@
-# petshop
-Diploma for QAGURU - UI + API tests for https://www.petshop.ru/
+# budzdorov
+Diploma for QAGURU - UI + API tests for https://www.budzdorov.ru/
