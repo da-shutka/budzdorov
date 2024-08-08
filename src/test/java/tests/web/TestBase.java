@@ -1,9 +1,11 @@
 package tests.web;
 
+import auth.AuthorizationWeb;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +20,14 @@ public class TestBase {
 
     @BeforeAll
     static void settingsBeforeAll() {
+        //RestAssured.baseURI = "https://www.budzdorov.ru/rest";
+        RestAssured.baseURI = "https://www.rigla.ru/rest";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = SystemProperties.browser;
         Configuration.browserSize = SystemProperties.browserSize;
         Configuration.browserVersion = SystemProperties.browserVersion;
 
-        Configuration.baseUrl = "https://www.budzdorov.ru/";
+        Configuration.baseUrl = "https://www.rigla.ru/";
         //Configuration.remote = "https://user1:1234@" + SystemProperties.wdHost + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -32,16 +36,12 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("excludeSwitches", List.of("disable-popup-blocking"));
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
     }
 
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+        //AuthorizationWeb.setCookiesForApi();
     }
 
     @AfterEach

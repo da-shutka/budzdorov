@@ -3,21 +3,31 @@ package tests.web;
 import helpers.WithLogin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pages.CartPage;
+import pages.ProductPage;
 
-public class CartTests {
+import static com.codeborne.selenide.Selenide.sleep;
+
+@DisplayName("Тесты на Корзину")
+public class CartTests extends TestBase {
+
+    ProductPage productPage = new ProductPage();
+    CartPage cartPage = new CartPage();
+    private static final String
+            product = "34225",
+            product2 = "34226";
 
     @Test
-    @WithLogin
-    @DisplayName("Добавление продукта в корзину")
-    public void addProductToCart(){
-        ProductPage
-                .openPage()
-                .addProductToCart();
-        cart.checkAddedProductIsInCart();
-        cart.removeProduct();
+    @DisplayName("Добавление товара в корзину")
+    public void addProductToCart() {
+        productPage
+                .openPage(product)
+                .addProductToCart()
+                .openCart();
+        cartPage.checkAddedProductIsInCart(product);
     }
 
-    @Test
+    /*@Test
     @WithLogin
     @DisplayName("Добавление нескольких разных продуктов в корзину")
     public void addMultipleProductsToCart(){
@@ -31,66 +41,66 @@ public class CartTests {
         cart.checkAddedProductIsInCart();
         cart.removeProduct();
         cart.removeProduct();
+    }*/
+
+    @Test
+    @DisplayName("Добавление двух одинаковых товаров в корзину через +")
+    public void addTheSameProductsToCart() {
+        productPage
+                .openPage(product)
+                .addMultipleQtyProductToCart()
+                .openCart();
+        cartPage
+                .checkAddedProductIsInCart(product)
+                .checkProductQty(2);
     }
 
     @Test
-    @WithLogin
-    @DisplayName("Добавление нескольких одинаковых продуктов в корзину")
-    public void addTheSameProductsToCart(){
-        ProductPage
-                .openPage()
-                .addProductToCart()
-                .addProductToCart();
-        cart.checkAddedProductIsInCart();
-        cart.checkCountOfProduct();
-        cart.removeProduct();
-    }
-
-    @Test
-    @WithLogin
     @DisplayName("Увеличение количества продукта в корзине")
-    public void increaseProductCountInCart(){
-        cart.addProduct();
-        CartPage
-                .openPage()
+    public void increaseProductCountInCart() {
+        productPage
+                .openPage(product)
+                .addProductToCart()
+                .openCart();
+        cartPage
                 .increaseProductCount()
-                .checkProductCount();
-        cart.removeProduct();
+                .checkProductQty(2);
     }
 
     @Test
-    @WithLogin
     @DisplayName("Уменьшение количества продукта в корзине")
-    public void decreaseProductCountInCart(){
-        cart.addProduct();
-        cart.addProduct();
-        CartPage
-                .openPage()
+    public void decreaseProductCountInCart() {
+        productPage
+                .openPage(product)
+                .addMultipleQtyProductToCart()
+                .openCart();
+        cartPage
                 .decreaseProductCount()
-                .checkProductCount();
-        cart.removeProduct();
+                .checkProductQty(1);
     }
 
     @Test
-    @WithLogin
     @DisplayName("Удаление продукта из корзины")
-    public void removeProductFromCart(){
-        cart.addProduct();
-        cart.addProduct();
-        CartPage
-                .openPage()
-                .removeProduct()
-                .checkProductIsRemoved();
+    public void removeProductFromCart() {
+        productPage
+                .openPage(product)
+                .addProductToCart()
+                .openCart();
+        cartPage
+                .deleteProductFromCart()
+                .checkCartIsEmpty();
     }
 
     @Test
-    @WithLogin
     @DisplayName("Очистка корзины")
-    public void clearCart(){
-        cart.addProduct();
-        cart.addProduct();
-        CartPage
-                .openPage()
+    public void clearCart() {
+        productPage
+                .openPage(product)
+                .addProductToCart()
+                .openPage(product2)
+                .addProductToCart()
+                .openCart();
+        cartPage
                 .clearCart()
                 .checkCartIsEmpty();
     }

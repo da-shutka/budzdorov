@@ -1,14 +1,16 @@
 package helpers;
 
 import auth.AuthorizationWeb;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-public class LoginExtension implements BeforeAllCallback{
+public class LoginExtension implements BeforeEachCallback {
 
     @Override
-    public void beforeAll(ExtensionContext context) {
+    public void beforeEach(ExtensionContext context) {
 
-        AuthorizationWeb.addCookies();
+        //AuthorizationWeb.addCookies();
+        //AuthorizationWeb.setCookiesForApi();
+
     }
 }
