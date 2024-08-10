@@ -67,3 +67,28 @@ tasks.withType(Test) {
         }
     }
 }
+
+task web(type: Test) {
+    useJUnitPlatform {
+        includeTags("WEB")
+    }
+}
+
+task cart(type: Test) {
+    useJUnitPlatform {
+        includeTags("CART")
+    }
+}
+
+task fav(type: Test) {
+    useJUnitPlatform {
+        includeTags("FAV")
+    }
+}
+
+
+task login(type: Test) {
+    useJUnitPlatform {
+        includeTags("LOGIN")
+    }
+}

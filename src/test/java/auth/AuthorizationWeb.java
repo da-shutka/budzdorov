@@ -1,11 +1,7 @@
 package auth;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.Cookie;
-import pages.LoginPage;
-import pages.MainPage;
 import properties.SystemProperties;
-import tests.web.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;

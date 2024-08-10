@@ -1,25 +1,21 @@
 package pages;
 
-import auth.AuthorizationWeb;
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.actions;
 
 public class ProductPage {
 
     private final SelenideElement
-            advPopup = $(".popup-metadata-popup__paranja"),
+            advPopup = $("div.popup-metadata-popup__paranja"),
             cityPopup = $("div.city-confirm"),
+            cookiePopup = $("div.cookie-confirmation-notice"),
             favIcon = $("div.wishlist-icon"),
-            favProduct = $("a.wish-list__list-item-info-text"),
+            favButton = $("button.wishlist-product-control.product-content-basket__button-like"),
             favList = $("div.wish-list__products-count"),
             addToCartButton = $(".product-add-to-cart__btn"),
-            //cart = $("$(a[href='/cart'])");
             cart = $(".minicart-top__link"),
             plusButton = $$("button.product-change-qty__btn").get(1);
 
@@ -35,11 +31,12 @@ public class ProductPage {
         sleep(2000);
         executeJavaScript("arguments[0].remove();", advPopup);
         executeJavaScript("arguments[0].remove();", cityPopup);
+        executeJavaScript("arguments[0].remove();", cookiePopup);
     }
 
-    @Step("Добавить товр в Избранное")
+    @Step("Добавить товар в Избранное")
     public ProductPage addProductToFavourites() {
-        $("button.wishlist-product-control.product-content-basket__button-like").click();
+        favButton.click();
         return this;
     }
 

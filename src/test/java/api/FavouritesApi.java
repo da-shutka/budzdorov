@@ -6,8 +6,8 @@ import models.GetFavouritesListModel;
 import models.ItemModel;
 
 import static io.restassured.RestAssured.given;
-import static specs.BudZdorovSpec.requestSpec;
-import static specs.BudZdorovSpec.responseSpecWithStatusCode200;
+import static specs.RiglaSpec.requestSpec;
+import static specs.RiglaSpec.responseSpecWithStatusCode200;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

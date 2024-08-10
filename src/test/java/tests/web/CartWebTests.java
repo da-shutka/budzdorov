@@ -1,21 +1,22 @@
 package tests.web;
 
-import helpers.WithLogin;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pages.CartPage;
 import pages.ProductPage;
 
-import static com.codeborne.selenide.Selenide.sleep;
-
 @DisplayName("Тесты на Корзину")
-public class CartTests extends TestBase {
+@Tags({@Tag("WEB"), @Tag("CART")})
+public class CartWebTests extends TestBaseWeb {
 
-    ProductPage productPage = new ProductPage();
-    CartPage cartPage = new CartPage();
     private static final String
             product = "34225",
             product2 = "34226";
+
+    ProductPage productPage = new ProductPage();
+    CartPage cartPage = new CartPage();
 
     @Test
     @DisplayName("Добавление товара в корзину")
@@ -26,22 +27,6 @@ public class CartTests extends TestBase {
                 .openCart();
         cartPage.checkAddedProductIsInCart(product);
     }
-
-    /*@Test
-    @WithLogin
-    @DisplayName("Добавление нескольких разных продуктов в корзину")
-    public void addMultipleProductsToCart(){
-        ProductPage
-                .openPage()
-                .addProductToCart();
-        ProductPage
-                .openPage()
-                .addProductToCart();
-        cart.checkAddedProductIsInCart();
-        cart.checkAddedProductIsInCart();
-        cart.removeProduct();
-        cart.removeProduct();
-    }*/
 
     @Test
     @DisplayName("Добавление двух одинаковых товаров в корзину через +")

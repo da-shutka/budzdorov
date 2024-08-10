@@ -13,7 +13,8 @@ public class CartPage {
             productQty = $(".product-change-qty__qty"),
             plusButton = $$("button.product-change-qty__btn").get(1),
             minusButton = $$("button.product-change-qty__btn").first(),
-            deleteProductButton = $(".cart-row__delete"),
+            deleteProductButton = $(".cart-row__delete use"),
+            clearCartButton = $(".cart__delete-icon use"),
             cartTitleEmpty = $(".cart-empty");
 
     @Step("Проверить, что добавленный товар в корзине")
@@ -31,7 +32,7 @@ public class CartPage {
             product = "товара";
         } else product = "товаров";
 
-        cartProductTitle.shouldHave(text(qty.toString() + " " + product));
+        cartProductTitle.shouldHave(text(qty + " " + product));
         productQty.shouldHave(attribute("_value", qty.toString()));
     }
 
@@ -49,7 +50,7 @@ public class CartPage {
 
     @Step("Удалить товар из корзины")
     public CartPage deleteProductFromCart() {
-        actions().moveToElement($(".cart-row__delete use")).clickAndHold().release().perform();
+        actions().moveToElement(deleteProductButton).clickAndHold().release().perform();
         return this;
     }
 
@@ -61,7 +62,7 @@ public class CartPage {
 
     @Step("Очистить корзину")
     public CartPage clearCart() {
-        actions().moveToElement($(".cart__delete-icon use")).clickAndHold().release().perform();
+        actions().moveToElement(clearCartButton).clickAndHold().release().perform();
         return this;
     }
 }

@@ -9,7 +9,7 @@ import io.restassured.specification.ResponseSpecification;
 import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
 
-public class BudZdorovSpec {
+public class RiglaSpec {
 
     public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
