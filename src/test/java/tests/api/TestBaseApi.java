@@ -4,17 +4,11 @@ import auth.AuthorizationWeb;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import properties.SystemProperties;
-
-import java.util.Map;
 
 public class TestBaseApi {
 
@@ -29,23 +23,12 @@ public class TestBaseApi {
 
         RestAssured.baseURI = "https://www.rigla.ru/rest";
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-        Configuration.browserCapabilities = capabilities;
-
         AuthorizationWeb.enterToWebSite();
+        Selenide.closeWebDriver();
     }
 
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-    }
-
-    @AfterAll
-    static void afterAll() {
-        Selenide.closeWebDriver();
     }
 }
