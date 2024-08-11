@@ -1,50 +1,54 @@
 package tests.web;
 
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pages.CartPage;
 import pages.ProductPage;
+import tests.TestData;
 
 @DisplayName("Тесты на Корзину")
-@Tags({@Tag("WEB"), @Tag("CART")})
+@Tags({
+        @Tag("WEB"),
+        @Tag("CART")
+})
 public class CartWebTests extends TestBaseWeb {
-
-    private static final String
-            product = "34225",
-            product2 = "34226";
 
     ProductPage productPage = new ProductPage();
     CartPage cartPage = new CartPage();
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Добавление товара в корзину")
     public void addProductToCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addProductToCart()
                 .openCart();
-        cartPage.checkAddedProductIsInCart(product);
+        cartPage.checkAddedProductIsInCart(TestData.product);
     }
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Добавление двух одинаковых товаров в корзину через +")
     public void addTheSameProductsToCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addMultipleQtyProductToCart()
                 .openCart();
         cartPage
-                .checkAddedProductIsInCart(product)
+                .checkAddedProductIsInCart(TestData.product)
                 .checkProductQty(2);
     }
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Увеличение количества продукта в корзине")
     public void increaseProductCountInCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addProductToCart()
                 .openCart();
         cartPage
@@ -53,10 +57,11 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Уменьшение количества продукта в корзине")
     public void decreaseProductCountInCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addMultipleQtyProductToCart()
                 .openCart();
         cartPage
@@ -65,10 +70,11 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Удаление продукта из корзины")
     public void removeProductFromCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addProductToCart()
                 .openCart();
         cartPage
@@ -77,12 +83,13 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
+    @Owner("@petrova_di")
     @DisplayName("Очистка корзины")
     public void clearCart() {
         productPage
-                .openPage(product)
+                .openPage(TestData.product)
                 .addProductToCart()
-                .openPage(product2)
+                .openPage(TestData.product2)
                 .addProductToCart()
                 .openCart();
         cartPage

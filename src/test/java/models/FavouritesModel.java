@@ -3,6 +3,7 @@ package models;
 import lombok.Data;
 
 @Data
-public class GetFavouritesListModel {
+public class FavouritesModel {
+
     ItemModel[] items;
 }

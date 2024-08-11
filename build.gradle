@@ -74,6 +74,12 @@ task web(type: Test) {
     }
 }
 
+task api(type: Test) {
+    useJUnitPlatform {
+        includeTags("API")
+    }
+}
+
 task cart(type: Test) {
     useJUnitPlatform {
         includeTags("CART")
@@ -83,6 +89,24 @@ task cart(type: Test) {
 task fav(type: Test) {
     useJUnitPlatform {
         includeTags("FAV")
+    }
+}
+
+task fav_add(type: Test) {
+    useJUnitPlatform {
+        includeTags("FAV_ADD")
+    }
+}
+
+task fav_del(type: Test) {
+    useJUnitPlatform {
+        includeTags("FAV_DEL")
+    }
+}
+
+task fav_list(type: Test) {
+    useJUnitPlatform {
+        includeTags("FAV_LIST")
     }
 }
 

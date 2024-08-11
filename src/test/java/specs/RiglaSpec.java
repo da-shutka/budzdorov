@@ -20,4 +20,14 @@ public class RiglaSpec {
             .expectStatusCode(200)
             .log(LogDetail.ALL)
             .build();
+
+    public static ResponseSpecification responseSpecWithStatusCode403 = new ResponseSpecBuilder()
+            .expectStatusCode(403)
+            .log(LogDetail.ALL)
+            .build();
+
+    public static ResponseSpecification responseSpecWithStatusCode404 = new ResponseSpecBuilder()
+            .expectStatusCode(404)
+            .log(LogDetail.ALL)
+            .build();
 }
