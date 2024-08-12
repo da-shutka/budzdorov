@@ -14,12 +14,18 @@ public class TestBaseApi {
 
     @BeforeAll
     static void settingsBeforeAll() {
+        Configuration.baseUrl = "https://www.rigla.ru/";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = SystemProperties.browser;
         Configuration.browserSize = SystemProperties.browserSize;
         Configuration.browserVersion = SystemProperties.browserVersion;
-        Configuration.baseUrl = "https://www.rigla.ru/";
-        //Configuration.remote = "https://user1:1234@" + SystemProperties.wdHost + "/wd/hub";
+        Configuration.remote ="https://"
+                + SystemProperties.selenoidLogin
+                + ":"
+                + SystemProperties.selenoidPassword
+                + "@"
+                + SystemProperties.wdHost
+                + "/wd/hub";
 
         RestAssured.baseURI = "https://www.rigla.ru/rest";
 

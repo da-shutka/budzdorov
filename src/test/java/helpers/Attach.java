@@ -47,12 +47,12 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-//        String videoUrl = "https://" + SystemProperties.wdHost + "/video/" + sessionId() + ".mp4";
-//        try {
-//            return new URL(videoUrl);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
+        String videoUrl = "https://" + SystemProperties.wdHost + "/video/" + sessionId() + ".mp4";
+        try {
+            return new URL(videoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

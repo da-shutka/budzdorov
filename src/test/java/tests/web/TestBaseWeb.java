@@ -17,13 +17,18 @@ public class TestBaseWeb {
 
     @BeforeAll
     static void settingsBeforeAll() {
+        Configuration.baseUrl = "https://www.rigla.ru/";
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = SystemProperties.browser;
         Configuration.browserSize = SystemProperties.browserSize;
         Configuration.browserVersion = SystemProperties.browserVersion;
-
-        Configuration.baseUrl = "https://www.rigla.ru/";
-        //Configuration.remote = "https://user1:1234@" + SystemProperties.wdHost + "/wd/hub";
+        Configuration.remote ="https://"
+                + SystemProperties.selenoidLogin
+                + ":"
+                + SystemProperties.selenoidPassword
+                + "@"
+                + SystemProperties.wdHost
+                + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
