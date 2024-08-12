@@ -23,8 +23,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Добавление товара в корзину")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Добавление товара в корзину")
     @DisplayName("Добавление товара в корзину")
     public void addProductToCart() {
         productPage
@@ -36,8 +36,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Добавление товара в корзину")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Добавление товара в корзину")
     @DisplayName("Добавление двух одинаковых товаров в корзину через +")
     public void addTheSameProductsToCart() {
         productPage
@@ -51,8 +51,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Изменение товара в корзине")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Изменение товара в корзине")
     @DisplayName("Увеличение количества продукта в корзине")
     public void increaseProductCountInCart() {
         productPage
@@ -66,8 +66,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Изменение товара в корзине")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Изменение товара в корзине")
     @DisplayName("Уменьшение количества продукта в корзине")
     public void decreaseProductCountInCart() {
         productPage
@@ -81,8 +81,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Удаление товара из корзины")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Удаление товара из корзины")
     @DisplayName("Удаление продукта из корзины")
     public void removeProductFromCart() {
         productPage
@@ -96,8 +96,8 @@ public class CartWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация корзины пользователя с товарами")
-    @Feature("Удаление товара из корзины")
+    @Feature("Реализация корзины пользователя с товарами")
+    @Story("Удаление товара из корзины")
     @DisplayName("Очистка корзины")
     public void clearCart() {
         productPage

@@ -21,8 +21,8 @@ public class FavouritesWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация списка избранных товаров пользователя")
-    @Feature("Добавление товара в список избранного")
+    @Feature("Реализация списка избранных товаров пользователя")
+    @Story("Добавление товара в список избранного")
     @DisplayName("Добавление продукта в Избранное")
     public void addProductToFavourites() {
         productPage
@@ -33,8 +33,8 @@ public class FavouritesWebTests extends TestBaseWeb {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация списка избранных товаров пользователя")
-    @Feature("Удаление товара из списка избранного")
+    @Feature("Реализация списка избранных товаров пользователя")
+    @Story("Удаление товара из списка избранного")
     @DisplayName("Удаление продукта из Избранного")
     public void removeProductFromFavourites() {
         productPage

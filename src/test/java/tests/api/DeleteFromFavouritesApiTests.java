@@ -21,8 +21,8 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация списка избранных товаров пользователя")
-    @Feature("Удаление товара из списка избранного")
+    @Feature("Реализация списка избранных товаров пользователя")
+    @Story("Удаление товара из списка избранного")
     @DisplayName("Удаление товара из избранного")
     public void deleteProductFromFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
@@ -32,8 +32,8 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация списка избранных товаров пользователя")
-    @Feature("Удаление товара из списка избранного")
+    @Feature("Реализация списка избранных товаров пользователя")
+    @Story("Удаление товара из списка избранного")
     @DisplayName("Удаление товара с несуществующим id из избранного")
     public void deleteNonexistingProductFromFavouritesApi() {
         steps.unsuccessfullyRemoveFromFavourites(TestData.unknownProduct);
@@ -41,8 +41,8 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
-    @Story("Реализация списка избранных товаров пользователя")
-    @Feature("Удаление товара из списка избранного")
+    @Feature("Реализация списка избранных товаров пользователя")
+    @Story("Удаление товара из списка избранного")
     @DisplayName("Удаление товара из избранного без авторизации")
     public void deleteProductFromFavouritesWithoutCookieApi() {
         steps.deleteProductFromFavouritesNoSessionGuid(TestData.product);
