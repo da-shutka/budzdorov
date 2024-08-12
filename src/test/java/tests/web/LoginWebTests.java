@@ -1,6 +1,8 @@
 package tests.web;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import pages.LoginPage;
 import properties.SystemProperties;
@@ -16,7 +18,9 @@ public class LoginWebTests extends TestBaseWeb {
 
     @Test
     @Disabled
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация логина на сайте")
+    @Feature("Успешный логин")
     @DisplayName("Успешный логин")
     public void successfulLoginFromLoginPage(){
         loginPage
@@ -26,7 +30,9 @@ public class LoginWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация логина на сайте")
+    @Feature("Неуспешный логин")
     @DisplayName("Неуспешный логин из-за капчи")
     public void unsuccessfulLoginDueToCaptchaFromLoginPage(){
         loginPage
@@ -36,7 +42,9 @@ public class LoginWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация логина на сайте")
+    @Feature("Неуспешный логин")
     @DisplayName("Неуспешный логин без почты")
     public void unsuccessfulLoginWithoutEmailFromLoginPage(){
         loginPage
@@ -46,7 +54,9 @@ public class LoginWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация логина на сайте")
+    @Feature("Неуспешный логин")
     @DisplayName("Неуспешный логин без пароля")
     public void unsuccessfulLoginWithoutPasswordFromLoginPage(){
         loginPage
@@ -57,7 +67,9 @@ public class LoginWebTests extends TestBaseWeb {
 
     @Test
     @Disabled
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация логина на сайте")
+    @Feature("Неуспешный логин")
     @DisplayName("Неуспешный логин с неверными кредами")
     public void unsuccessfulLoginWithIncorrectCredentialsFromLoginPage(){
         loginPage

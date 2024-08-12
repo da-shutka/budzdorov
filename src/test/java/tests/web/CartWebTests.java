@@ -1,6 +1,8 @@
 package tests.web;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -20,7 +22,9 @@ public class CartWebTests extends TestBaseWeb {
     CartPage cartPage = new CartPage();
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Добавление товара в корзину")
     @DisplayName("Добавление товара в корзину")
     public void addProductToCart() {
         productPage
@@ -31,7 +35,9 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Добавление товара в корзину")
     @DisplayName("Добавление двух одинаковых товаров в корзину через +")
     public void addTheSameProductsToCart() {
         productPage
@@ -44,7 +50,9 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Изменение товара в корзине")
     @DisplayName("Увеличение количества продукта в корзине")
     public void increaseProductCountInCart() {
         productPage
@@ -57,7 +65,9 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Изменение товара в корзине")
     @DisplayName("Уменьшение количества продукта в корзине")
     public void decreaseProductCountInCart() {
         productPage
@@ -70,7 +80,9 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Удаление товара из корзины")
     @DisplayName("Удаление продукта из корзины")
     public void removeProductFromCart() {
         productPage
@@ -83,7 +95,9 @@ public class CartWebTests extends TestBaseWeb {
     }
 
     @Test
-    @Owner("@petrova_di")
+    @Owner("Дарья Петрова")
+    @Story("Реализация корзины пользователя с товарами")
+    @Feature("Удаление товара из корзины")
     @DisplayName("Очистка корзины")
     public void clearCart() {
         productPage

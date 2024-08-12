@@ -1,6 +1,8 @@
 package tests.api;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
@@ -19,6 +21,8 @@ public class FavouritesListApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
+    @Story("Реализация списка избранных товаров пользователя")
+    @Feature("Получение списка избранных товаров")
     @DisplayName("Получение списка товаров из избранного")
     public void getListOfFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
@@ -31,6 +35,8 @@ public class FavouritesListApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
+    @Story("Реализация списка избранных товаров пользователя")
+    @Feature("Получение списка избранных товаров")
     @DisplayName("Получение пустого списка товаров из избранного")
     public void getEmptyListOfFavouritesApi() {
         steps.checkFavouritesListIsEmpty();
@@ -38,6 +44,8 @@ public class FavouritesListApiTests extends TestBaseApi {
 
     @Test
     @Owner("Дарья Петрова")
+    @Story("Реализация списка избранных товаров пользователя")
+    @Feature("Получение списка избранных товаров")
     @DisplayName("Получение списка товаров из избранного без авторизации")
     public void getListOfFavouritesWithoutCookieApi() {
         steps.checkFavouritesListNoSessionGuid();
