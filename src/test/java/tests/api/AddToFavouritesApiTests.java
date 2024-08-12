@@ -22,7 +22,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Добавление товара в список избранного")
+    @Story("API: Добавление товара в список избранного")
     @DisplayName("Добавление товара в избранное")
     public void addProductToFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
@@ -34,7 +34,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Добавление товара в список избранного")
+    @Story("API: Добавление товара в список избранного")
     @DisplayName("Добавление несуществующего товара в избранное")
     public void addNonexistingProductToFavouritesApi() {
         steps.addProductToFavourites(TestData.unknownProduct);
@@ -44,7 +44,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Добавление товара в список избранного")
+    @Story("API: Добавление товара в список избранного")
     @DisplayName("Добавление товара в избранное дважды")
     public void addProductToFavouritesTwiceApi() {
         steps.addProductToFavourites(TestData.product);
@@ -57,7 +57,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Добавление товара в список избранного")
+    @Story("API: Добавление товара в список избранного")
     @DisplayName("Добавление товара в избранное без авторизации")
     public void addProductToFavouritesWithoutCookieApi() {
         steps.addProductToFavouritesNoSessionGuid(TestData.product);

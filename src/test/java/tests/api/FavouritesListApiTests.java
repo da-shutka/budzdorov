@@ -22,7 +22,7 @@ public class FavouritesListApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Получение списка избранных товаров")
+    @Story("API: Получение списка избранных товаров")
     @DisplayName("Получение списка товаров из избранного")
     public void getListOfFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
@@ -36,7 +36,7 @@ public class FavouritesListApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Получение списка избранных товаров")
+    @Story("API: Получение списка избранных товаров")
     @DisplayName("Получение пустого списка товаров из избранного")
     public void getEmptyListOfFavouritesApi() {
         steps.checkFavouritesListIsEmpty();
@@ -45,7 +45,7 @@ public class FavouritesListApiTests extends TestBaseApi {
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
-    @Story("Получение списка избранных товаров")
+    @Story("API: Получение списка избранных товаров")
     @DisplayName("Получение списка товаров из избранного без авторизации")
     public void getListOfFavouritesWithoutCookieApi() {
         steps.checkFavouritesListNoSessionGuid();
