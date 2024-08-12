@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 import pages.LoginPage;
 import properties.SystemProperties;
 
-@DisplayName("Тесты на авторизацию")
+@DisplayName("UI тесты на авторизацию")
 @Tags({
         @Tag("WEB"),
         @Tag("LOGIN")

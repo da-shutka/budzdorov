@@ -11,7 +11,7 @@ import pages.CartPage;
 import pages.ProductPage;
 import tests.TestData;
 
-@DisplayName("Тесты на Корзину")
+@DisplayName("UI тесты на корзину")
 @Tags({
         @Tag("WEB"),
         @Tag("CART")

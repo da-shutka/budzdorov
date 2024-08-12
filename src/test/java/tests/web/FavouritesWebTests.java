@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import pages.ProductPage;
 import tests.TestData;
 
-@DisplayName("Тесты на Избранное")
+@DisplayName("UI тесты на избранное")
 @Tags({
         @Tag("WEB"),
         @Tag("FAV")
