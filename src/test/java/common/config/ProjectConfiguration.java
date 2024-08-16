@@ -1,8 +1,8 @@
-package config;
+package common.config;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import tests.TestData;
+import common.TestData;
 
 import java.util.Map;
 

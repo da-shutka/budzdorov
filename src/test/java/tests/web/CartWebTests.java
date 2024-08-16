@@ -7,9 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import pages.CartPage;
-import pages.ProductPage;
-import tests.TestData;
+import web.pages.CartPage;
+import web.pages.ProductPage;
+import common.TestData;
 
 @DisplayName("UI тесты на корзину")
 @Tags({

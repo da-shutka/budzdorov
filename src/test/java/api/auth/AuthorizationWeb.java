@@ -1,7 +1,7 @@
-package auth;
+package api.auth;
 
 import io.qameta.allure.Step;
-import pages.MainPage;
+import web.pages.MainPage;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 

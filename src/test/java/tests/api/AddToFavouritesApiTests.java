@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import tests.TestData;
+import common.TestData;
 
 @DisplayName("API тесты на добавление товара в избранное")
 @Tags({

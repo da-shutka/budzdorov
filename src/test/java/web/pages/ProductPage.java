@@ -1,9 +1,10 @@
-package pages;
+package web.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ProductPage {
@@ -78,5 +79,4 @@ public class ProductPage {
         executeJavaScript("arguments[0].click();", plusButton);
         return this;
     }
-
 }

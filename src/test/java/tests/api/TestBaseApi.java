@@ -1,17 +1,15 @@
 package tests.api;
 
-import auth.AuthorizationWeb;
-import com.codeborne.selenide.Configuration;
+import api.auth.AuthorizationWeb;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.ProjectConfiguration;
+import common.config.ProjectConfiguration;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import properties.SystemProperties;
 
-import static config.ConfigReader.webConfig;
+import static common.config.ConfigReader.webConfig;
 
 public class TestBaseApi {
 

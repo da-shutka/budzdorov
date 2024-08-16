@@ -2,14 +2,14 @@ package tests.web;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.ProjectConfiguration;
-import helpers.Attach;
+import common.config.ProjectConfiguration;
+import common.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-import static config.ConfigReader.webConfig;
+import static common.config.ConfigReader.webConfig;
 
 public class TestBaseWeb {
 

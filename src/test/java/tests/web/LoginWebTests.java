@@ -4,9 +4,8 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import pages.LoginPage;
-import properties.SystemProperties;
-import tests.TestData;
+import web.pages.LoginPage;
+import common.TestData;
 
 @DisplayName("UI тесты на авторизацию")
 @Tags({
