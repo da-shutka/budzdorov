@@ -1,2 +1,84 @@
-# Ригла
-Diploma for QAGURU - UI + API tests for https://www.rigla.ru/
+# Проект по автоматизации тестирования сайта сети аптек [<img width="20%" title="Rigla" src="media/icons/Rigla.svg"/>](https://rigla.ru/)
+>Наши аптеки – это многопрофильные центры здоровья и красоты европейского уровня. Мы уверены, что успеха и благополучия гораздо легче добиться здоровым людям. Жить полной жизнью, использовать каждый шанс, который дает фортуна, – такова философия современного человека. Не тратьте времени на болезни, улыбайтесь людям, занимайтесь спортом, гордитесь собой, путешествуйте и уверенно идите к своей цели!
+
+## :receipt: Содержание
+- [Используемый стек](#computer-используемый-стек)
+- [Описание проекта](#-описание-проекта)
+- [Реализованные проверки](#ballot_box_with_check-реализованные-проверки)
+  - [UI тесты](#-ui-тесты)
+  - [API тесты](#-api-тесты)
+  - [Ручные тесты](#-ручные-тесты)
+- [Запуск тестов](#-запуск-тестов)
+  - [Локальный запуск](#-локальный-запуск)
+  - [Удаленный запуск на Selenoid](#-удаленный-запуск)
+- [Сборка в Jenkins](#-сборка-в-jenkins)
+- [Allure-отчет](#-allure-отчет)
+- [Allure-TestOps](#-allure-testops)
+- [Задача в JIRA](#-задача-в-jira)
+- [Уведомления в Telegram](#-уведомления-в-telegram)
+- [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-тестов-в-selenoid)
+
+## :computer: Используемый стек
+<p align="center">
+<a href="https://www.jetbrains.com/idea/"><img width="6%" title="IntelliJ IDEA" src="media/icons/Intelij_IDEA.svg"/></a>
+<a href="https://www.java.com/"><img width="6%" title="Java" src="media/icons/Java.svg"/></a>
+<a href="https://selenide.org/"><img width="6%" title="Selenide" src="media/icons/Selenide.svg"/></a>
+<a href="https://aerokube.com/selenoid/"><img width="6%" title="Selenoid" src="media/icons/Selenoid.svg"/></a>
+<a href="https://github.com/allure-framework/allure2"><img width="6%" title="Allure Report" src="media/icons/Allure_Report.svg"/></a>
+<a href="https://qameta.io/"><img width="6%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/></a>
+<a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/icons/Gradle.svg"/></a>
+<a href="https://junit.org/junit5/"><img width="6%" title="JUnit5" src="media/icons/JUnit5.svg"/></a>
+<a href="https://github.com/"><img width="6%" title="GitHub" src="media/icons/Github.webp"/></a>
+<a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/icons/Jenkins.svg"/></a>
+<a href="https://telegram.org/"><img width="6%" title="Telegram" src="media/icons/Telegram.svg"/></a>
+<a href="https://www.atlassian.com/ru/software/jira"><img width="6%" title="Jira" src="media/icons/Jira.webp"/></a>
+</p>
+
+
+## :bookmark_tabs: Описание проекта
+
+- Проект состоит из UI, API и ручных тестов
+- Ручные тесты добавлены в ```Allure TestOps```
+- Автоматические тесты реализованы на языке ```Java```
+- В качестве сборщика используется ```Gradle```
+- Используются фреймворки ```JUnit 5``` и ```Selenide```
+- Используется технология ```Owner``` для конфигурации тестов
+- Используется ```Lombok``` для моделей в API тестах
+- При запуске тестов браузер может запускаться локально или в ```Selenoid```
+- Реализована возможность запуска тестов в ```Jenkins```
+- Реализована возможность запуска тестов из ```Allure TestOps```
+- Реализована интеграция с ```Jira```
+- Настроена отправка уведомлений о результатах прохождения в чат-бот ```Telegram```
+- По завершении прохождения автотестов генерируется ```Allure Report```
+
+## :heavy_check_mark: Реализованные проверки
+
+### :pencil2: UI тесты
+- Авторизация
+  - :white_check_mark: Успешный логин
+  - :white_check_mark: Неуспешный логин из-за капчи
+  - :white_check_mark: Неуспешный логин без почты
+  - :white_check_mark: Неуспешный логин без пароля
+  - :white_check_mark: Неуспешный логин с неверными кредами
+- Избранные товары
+  - :white_check_mark: Добавление продукта в Избранное
+  - :white_check_mark: Удаление продукта из Избранного
+- Корзина
+  - :white_check_mark: Добавление товара в корзину
+  - :white_check_mark: Добавление двух одинаковых товаров в корзину через +
+  - :white_check_mark: Увеличение количества продукта в корзине
+  - :white_check_mark: Уменьшение количества продукта в корзине
+  - :white_check_mark: Удаление продукта из корзины
+  - :white_check_mark: Очистка корзины
+
+### :pencil2: API тесты
+- :white_check_mark: Добавление товара в избранное
+- :white_check_mark: Добавление несуществующего товара в избранное
+- :white_check_mark: Добавление товара в избранное дважды
+- :white_check_mark: Добавление товара в избранное без авторизации
+- :white_check_mark: Удаление товара из избранного
+- :white_check_mark: Удаление товара с несуществующим id из избранного
+- :white_check_mark: Удаление товара из избранного без авторизации
+- :white_check_mark: Получение списка товаров из избранного
+- :white_check_mark: Получение пустого списка товаров из избранного
+- :white_check_mark: Получение списка товаров из избранного без авторизации
