@@ -6,6 +6,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import pages.LoginPage;
 import properties.SystemProperties;
+import tests.TestData;
 
 @DisplayName("UI тесты на авторизацию")
 @Tags({
@@ -25,7 +26,7 @@ public class LoginWebTests extends TestBaseWeb {
     public void successfulLoginFromLoginPage(){
         loginPage
                 .openPage()
-                .loginWithEmailAndPassword(SystemProperties.email, SystemProperties.password)
+                .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkUserIsLoggedIn();
     }
 
@@ -37,7 +38,7 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginDueToCaptchaFromLoginPage(){
         loginPage
                 .openPage()
-                .loginWithEmailAndPassword(SystemProperties.email, SystemProperties.password)
+                .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkCaptchaValidateError();
     }
 
@@ -49,7 +50,7 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginWithoutEmailFromLoginPage(){
         loginPage
                 .openPage()
-                .loginWithEmailAndPassword("", SystemProperties.password)
+                .loginWithEmailAndPassword("", TestData.password)
                 .checkUserIsNotLoggedInEmptyLogin();
     }
 
@@ -61,7 +62,7 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginWithoutPasswordFromLoginPage(){
         loginPage
                 .openPage()
-                .loginWithEmailAndPassword(SystemProperties.email, "")
+                .loginWithEmailAndPassword(TestData.email, "")
                 .checkUserIsNotLoggedInEmptyPassword();
     }
 
