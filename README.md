@@ -8,9 +8,10 @@
   - [UI тесты](#pencil2-ui-тесты)
   - [API тесты](#pencil2-api-тесты)
   - [Ручные тесты](#pencil2-ручные-тесты)
-- [Запуск тестов](#-запуск-тестов)
-  - [Локальный запуск](#-локальный-запуск)
-  - [Удаленный запуск на Selenoid](#-удаленный-запуск)
+- [Запуск тестов](#large_blue_circle-запуск-тестов)
+  - [Локальный запуск с запуском браузера локально](#локальный-запуск-с-запуском-браузера-локально)
+  - [Локальный запуск с запуском браузера в Selenoid](#локальный-запуск-с-запуском-браузера-в-selenoid)
+  - [Удаленный запуск на Selenoid](#удаленный-запуск)
 - [Сборка в Jenkins](#-сборка-в-jenkins)
 - [Allure-отчет](#-allure-отчет)
 - [Allure-TestOps](#-allure-testops)
@@ -90,31 +91,32 @@
 
 ---
 
-## Запуск тестов
-
-
-
+## :large_blue_circle: Запуск тестов
 
 ### Локальный запуск с запуском браузера локально
 ```bash
 gradle clean test
--Demail=""
--Dpassword=""
+gradle clean web -Demail="petrova.tpu@gmail.com" -Dpassword="123456" -DisRemote="false"
 ```
-где ```test``` - название задачи  
-для ```email``` задается значение в кавычках - почта пользователя (для тестов на авторизацию)  
-для ```password``` задается значение в кавычках - пароль пользователя (для тестов на авторизацию) 
 
 ### Локальный запуск с запуском браузера в Selenoid
 ```bash
 gradle clean test
 -DwdHost="selenoid.autotest.cloud"
--Demail=""
--Dpassword=""
--
+-DselenoidLogin="user1"
+-DselenoidPassword="1234"
+-DisRemote="true"
 ```
-где ```test``` - название задачи  
-для ```email``` задается значение в кавычках - почта пользователя (для тестов на авторизацию)  
-для ```password``` задается значение в кавычках - пароль пользователя (для тестов на авторизацию)
+
+```bash
+gradle clean login
+-Demail="petrova.tpu@gmail.com"
+-Dpassword="123456"
+-DwdHost="selenoid.autotest.cloud"
+-DselenoidLogin="user1"
+-DselenoidPassword="1234"
+-DisRemote="true"
+```
+
 
 ### Теги (задачи)
