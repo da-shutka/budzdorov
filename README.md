@@ -175,6 +175,7 @@ gradle clean api
 
 ### :writing_hand: Параметры сборки в Jenkins, задаваемые пользователем
 [<img width="50%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/build?delay=0sec)
+
 ```TASK``` - название задачи. Значение по умолчанию - ```test```  
 ```WDHOST``` - адрес удаленного браузера (selenoid). Значение - ```selenoid.autotests.cloud```  
 ```BROWSER``` - браузер для запуска тестов. Значение по умолчанию - ```chrome```  
@@ -182,10 +183,11 @@ gradle clean api
 ```BROWSE_SIZE``` - размер окна браузера. Значение по умолчанию - ```1920x1080```  
 
 ### :arrow_right: Параметры сборки в Jenkins, передаваемые из установленных значений:
-```USER_EMAIL``` - логин пользователя на сайте rigla.ru
-```USER_PASSWORD``` - пароль пользователя на сайте rigla.ru
-```SELENOID_LOGIN``` - логин пользователя для Selenoid фермы
-```SELENOID_PASSWORD``` - пароль пользователя для Selenoid фермы
+
+```USER_EMAIL``` - логин пользователя на сайте rigla.ru  
+```USER_PASSWORD``` - пароль пользователя на сайте rigla.ru  
+```SELENOID_LOGIN``` - логин пользователя для Selenoid фермы  
+```SELENOID_PASSWORD``` - пароль пользователя для Selenoid фермы  
 
 ```java
 clean
