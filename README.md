@@ -9,10 +9,9 @@
   - [API тесты](#pencil2-api-тесты)
   - [Ручные тесты](#pencil2-ручные-тесты)
 - [Запуск тестов](#large_blue_circle-запуск-тестов)
-  - [Локальный запуск с запуском браузера локально](#локальный-запуск-с-запуском-браузера-локально)
-  - [Локальный запуск с запуском браузера в Selenoid](#локальный-запуск-с-запуском-браузера-в-selenoid)
-  - [Удаленный запуск на Selenoid](#удаленный-запуск)
-- [Сборка в Jenkins](#-сборка-в-jenkins)
+  - [Локальный запуск](#desktop_computer-локальный-запуск)
+  - [Удаленный запуск на Selenoid](#robot-удаленный-запуск-на-selenoid)
+  - [Сборка в Jenkins](#-сборка-в-jenkins)
 - [Allure-отчет](#-allure-отчет)
 - [Allure-TestOps](#-allure-testops)
 - [Задача в JIRA](#-задача-в-jira)
@@ -51,6 +50,8 @@
 - Реализована интеграция с ```Jira```
 - Настроена отправка уведомлений о результатах прохождения в чат-бот ```Telegram```
 - По завершении прохождения автотестов генерируется ```Allure Report```
+
+---
 
 ## :heavy_check_mark: Реализованные проверки
 
@@ -95,30 +96,119 @@
 
 ## :large_blue_circle: Запуск тестов
 
-### Локальный запуск с запуском браузера локально
-```bash
-gradle clean test
-gradle clean web -Demail="petrova.tpu@gmail.com" -Dpassword="123456" -DisRemote="false"
-```
+## :desktop_computer: Локальный запуск
+Параметры для локального запуска в терминале IDE:
+- тег/задача
+  - ```test``` - все тесты
+  - ```web``` - UI тесты
+  - ```api``` - API тесты
+- где запускать браузер
+  -  ```-DisRemote=false``` - или не указывать этот параметр совсем, т.к. значение по умолчанию - false (== запускаем браузер локально)
+- логин и пароль
+  - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Но т.к. на сайте невозможно обмануть капчу и несколько тестов помечены как Disabled, то можно указать абсолютно любые логин и пароль
+- настройки браузера
+  - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в local.properties)
 
-### Локальный запуск с запуском браузера в Selenoid
-```bash
-gradle clean test
--DwdHost="selenoid.autotest.cloud"
--DselenoidLogin="user1"
--DselenoidPassword="1234"
--DisRemote="true"
-```
 
-```bash
-gradle clean login
--Demail="petrova.tpu@gmail.com"
+```java
+gradle clean test -Demail="test_email@gmail.com" -Dpassword="123456"
+
+gradle clean web
+-Demail="test_email@gmail.com"
 -Dpassword="123456"
--DwdHost="selenoid.autotest.cloud"
--DselenoidLogin="user1"
--DselenoidPassword="1234"
+-DisRemote=false
+-Dbrowser=firefox
+-DbrowserVersion=125
+-DbrowseSize=1600x1200
+
+gradle clean api
+```
+
+## :robot: Удаленный запуск на Selenoid
+Параметры для удаленного запуска в терминале IDE:
+- тег/задача
+  - ```test``` - все тесты
+  - ```web``` - UI тесты
+  - ```api``` - API тесты
+- где запускать браузер
+  -  ```-DisRemote=true```
+  -  ```-DwdHost=selenoid.autotests.cloud```
+  -  ```-DselenoidLogin=...```
+  -  ```-DselenoidPassword=...```
+- логин и пароль
+  - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Но т.к. на сайте невозможно обмануть капчу и несколько тестов помечены как Disabled, то можно указать абсолютно любые логин и пароль
+- настройки браузера
+  - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в remote.properties). В Selenoid ферме представлены не все браузеры и не все версии, поэтому указывать можно только те, которые там имеются:
+    - chrome: 99, 100, 113, 114, 120, 121, 122, 123, 124, 125, 126
+    - firefox: 122, 123, 124, 125
+    - opera: 106, 107, 108, 109
+
+```java
+gradle clean test
+-DisRemote=true
+-Demail="test_email@gmail.com"
+-Dpassword="123456"
+-DwdHost=selenoid.autotests.cloud
+-DselenoidLogin=...
+-DselenoidPassword=...
+
+gradle clean web
+-DisRemote=true
+-Demail="test_email@gmail.com"
+-Dpassword="123456"
+-DwdHost=selenoid.autotests.cloud
+-DselenoidLogin=...
+-DselenoidPassword=...
+-Dbrowser=firefox
+-DbrowserVersion=122
+-DbrowseSize=1920x1200
+
+gradle clean api
+-DisRemote=true
+-DwdHost=selenoid.autotests.cloud
+-DselenoidLogin=...
+-DselenoidPassword=...
+```
+
+## <img width="3%" title="Jenkins" src="media/icons/Jenkins.svg"/> Сборка в Jenkins
+[<img width="50%" title="Jenkins" src="media/img/Jenkins_job.png"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
+
+### :writing_hand: Параметры сборки в Jenkins, задаваемые пользователем
+[<img width="50%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/build?delay=0sec)
+```TASK``` - название задачи. Значение по умолчанию - ```test```  
+```WDHOST``` - адрес удаленного браузера (selenoid). Значение - ```selenoid.autotests.cloud```  
+```BROWSER``` - браузер для запуска тестов. Значение по умолчанию - ```chrome```  
+```BROWSER_VERSION``` - версия браузера. Значение по умолчанию - ```126```  
+```BROWSE_SIZE``` - размер окна браузера. Значение по умолчанию - ```1920x1080```  
+
+### :arrow_right: Параметры сборки в Jenkins, передаваемые из установленных значений:
+```USER_EMAIL``` - логин пользователя на сайте rigla.ru
+```USER_PASSWORD``` - пароль пользователя на сайте rigla.ru
+```SELENOID_LOGIN``` - логин пользователя для Selenoid фермы
+```SELENOID_PASSWORD``` - пароль пользователя для Selenoid фермы
+
+```java
+clean
+${TASK}
+-DwdHost=${WDHOST}
+-Dbrowser=${BROWSER}
+-DbrowserVersion=${BROWSER_VERSION}
+-DbrowseSize=${BROWSE_SIZE}
+-Demail=${USER_EMAIL}
+-Dpassword=${USER_PASSWORD}
+-DselenoidLogin=${SELENOID_LOGIN}
+-DselenoidPassword=${SELENOID_PASSWORD}
 -DisRemote="true"
 ```
 
+:gear: Запуск в Jenkins:
+1. Перейти в сборку
+2. Нажать ```Собрать с параметрами```/```Build with parameters```
+3. Выбрать значения или оставить установленные по умолчанию
+4. Нажать ```Собрать```/```Build```
 
-### Теги (задачи)
+---
+
+## <img width="3%" title="Allure Report" src="media/icons/Allure_Report.svg"/> Allure-отчет
+После выполнения сборки в Jenkins формируется отчет в Allure.  
+В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="IntelliJ IDEA" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
