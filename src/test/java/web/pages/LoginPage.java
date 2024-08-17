@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
 
-    private static final SelenideElement
+    private final SelenideElement
             advPopup = $("div.popup-metadata-popup__paranja"),
             cityPopup = $("div.city-confirm"),
             cookiePopup = $("div.cookie-confirmation-notice"),

@@ -11,10 +11,7 @@ import web.pages.ProductPage;
 import common.TestData;
 
 @DisplayName("UI тесты на избранное")
-@Tags({
-        @Tag("WEB"),
-        @Tag("FAV")
-})
+@Tag("WEB")
 public class FavouritesWebTests extends TestBaseWeb {
 
     ProductPage productPage = new ProductPage();

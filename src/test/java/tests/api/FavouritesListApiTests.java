@@ -10,11 +10,7 @@ import org.junit.jupiter.api.Test;
 import common.TestData;
 
 @DisplayName("API тесты на список товаров в избранном")
-@Tags({
-        @Tag("API"),
-        @Tag("FAV"),
-        @Tag("FAV_LIST")
-})
+@Tag("API")
 public class FavouritesListApiTests extends TestBaseApi {
 
     TestSteps steps = new TestSteps();

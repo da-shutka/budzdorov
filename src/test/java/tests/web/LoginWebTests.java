@@ -8,10 +8,7 @@ import web.pages.LoginPage;
 import common.TestData;
 
 @DisplayName("UI тесты на авторизацию")
-@Tags({
-        @Tag("WEB"),
-        @Tag("LOGIN")
-})
+@Tag("WEB")
 public class LoginWebTests extends TestBaseWeb {
 
     LoginPage loginPage = new LoginPage();

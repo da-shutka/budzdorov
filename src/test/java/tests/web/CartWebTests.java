@@ -12,10 +12,7 @@ import web.pages.ProductPage;
 import common.TestData;
 
 @DisplayName("UI тесты на корзину")
-@Tags({
-        @Tag("WEB"),
-        @Tag("CART")
-})
+@Tag("WEB")
 public class CartWebTests extends TestBaseWeb {
 
     ProductPage productPage = new ProductPage();
