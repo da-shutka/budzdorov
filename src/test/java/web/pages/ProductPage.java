@@ -30,9 +30,15 @@ public class ProductPage {
     @Step("Дождаться загрузки всех попапов и удалить их")
     public void waitAndRemovePopups() {
         sleep(2000);
-        executeJavaScript("arguments[0].remove();", advPopup);
-        executeJavaScript("arguments[0].remove();", cityPopup);
-        executeJavaScript("arguments[0].remove();", cookiePopup);
+        if (advPopup.exists()) {
+            executeJavaScript("arguments[0].remove();", advPopup);
+        }
+        if (cityPopup.exists()) {
+            executeJavaScript("arguments[0].remove();", cityPopup);
+        }
+        if (cookiePopup.exists()) {
+            executeJavaScript("arguments[0].remove();", cookiePopup);
+        }
     }
 
     @Step("Добавить товар в Избранное")
