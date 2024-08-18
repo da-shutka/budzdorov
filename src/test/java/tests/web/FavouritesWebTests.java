@@ -5,7 +5,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import web.pages.ProductPage;
 import common.TestData;
@@ -20,7 +19,7 @@ public class FavouritesWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("UI: Добавление товара в список избранного")
-    @DisplayName("Добавление продукта в Избранное")
+    @DisplayName("Проверка добавления товара в избранное")
     public void addProductToFavourites() {
         productPage
                 .openPage(TestData.product)
@@ -32,7 +31,7 @@ public class FavouritesWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("UI: Удаление товара из списка избранного")
-    @DisplayName("Удаление продукта из Избранного")
+    @DisplayName("Проверка удаления продукта из избранного")
     public void removeProductFromFavourites() {
         productPage
                 .openPage(TestData.product)

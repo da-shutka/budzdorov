@@ -18,7 +18,7 @@ public class LoginWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Успешный логин")
-    @DisplayName("Успешный логин")
+    @DisplayName("Проверка успешного логина")
     public void successfulLoginFromLoginPage(){
         loginPage
                 .openPage()
@@ -30,7 +30,7 @@ public class LoginWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Неуспешный логин")
-    @DisplayName("Неуспешный логин из-за капчи")
+    @DisplayName("Проверка неуспешного логина из-за капчи")
     public void unsuccessfulLoginDueToCaptchaFromLoginPage(){
         loginPage
                 .openPage()
@@ -42,7 +42,7 @@ public class LoginWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Неуспешный логин")
-    @DisplayName("Неуспешный логин без почты")
+    @DisplayName("Проверка неуспешного логина без почты")
     public void unsuccessfulLoginWithoutEmailFromLoginPage(){
         loginPage
                 .openPage()
@@ -54,7 +54,7 @@ public class LoginWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Неуспешный логин")
-    @DisplayName("Неуспешный логин без пароля")
+    @DisplayName("Проверка неуспешного логина без пароля")
     public void unsuccessfulLoginWithoutPasswordFromLoginPage(){
         loginPage
                 .openPage()
@@ -67,7 +67,7 @@ public class LoginWebTests extends TestBaseWeb {
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Неуспешный логин")
-    @DisplayName("Неуспешный логин с неверными кредами")
+    @DisplayName("Проверка неуспешного логина с неверными кредами")
     public void unsuccessfulLoginWithIncorrectCredentialsFromLoginPage(){
         loginPage
                 .openPage()

@@ -5,7 +5,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import common.TestData;
 
@@ -19,7 +18,7 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Удаление товара из списка избранного")
-    @DisplayName("Удаление товара из избранного")
+    @DisplayName("Проверка удаления товара из избранного")
     public void deleteProductFromFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
         steps.removeFromFavourites(TestData.product);
@@ -30,7 +29,7 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Удаление товара из списка избранного")
-    @DisplayName("Удаление товара с несуществующим id из избранного")
+    @DisplayName("Проверка удаления товара с несуществующим id из избранного")
     public void deleteNonexistingProductFromFavouritesApi() {
         steps.unsuccessfullyRemoveFromFavourites(TestData.unknownProduct);
     }
@@ -39,7 +38,7 @@ public class DeleteFromFavouritesApiTests extends TestBaseApi {
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Удаление товара из списка избранного")
-    @DisplayName("Удаление товара из избранного без авторизации")
+    @DisplayName("Проверка удаления товара из избранного без авторизации")
     public void deleteProductFromFavouritesWithoutCookieApi() {
         steps.deleteProductFromFavouritesNoSessionGuid(TestData.product);
     }
