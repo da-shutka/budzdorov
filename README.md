@@ -170,11 +170,11 @@ gradle clean api
 -DselenoidPassword=...
 ```
 
-## <img width="3%" title="Jenkins" src="media/icons/Jenkins.svg"/> Сборка в Jenkins
-[<img width="50%" title="Jenkins" src="media/img/Jenkins_job.png"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
+## <img width="3%" title="Jenkins" src="media/icons/Jenkins.svg"/> [Сборка в Jenkins](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
+<img width="50%" title="Jenkins" src="media/img/Jenkins_job.png"/>
 
 ### :writing_hand: Параметры сборки в Jenkins, задаваемые пользователем
-[<img width="50%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/build?delay=0sec)
+<img width="50%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>
 
 ```TASK``` - название задачи. Значение по умолчанию - ```test```  
 ```WDHOST``` - адрес удаленного браузера (selenoid). Значение - ```selenoid.autotests.cloud```  
@@ -211,6 +211,6 @@ ${TASK}
 
 ---
 
-## <img width="3%" title="Allure Report" src="media/icons/Allure_Report.svg"/> Allure-отчет
+## <img width="3%" title="Allure Report" src="media/icons/Allure_Report.svg"/> [Allure-отчет](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/allure/)
 После выполнения сборки в Jenkins формируется отчет в Allure.  
 В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="IntelliJ IDEA" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
