@@ -204,13 +204,31 @@ ${TASK}
 ```
 
 :gear: Запуск в Jenkins:
-1. Перейти в сборку
+1. Открыть [сборку](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
 2. Нажать ```Собрать с параметрами```/```Build with parameters```
 3. Выбрать значения или оставить установленные по умолчанию
 4. Нажать ```Собрать```/```Build```
+5. Результат - в логах самой сборки, в Allure-отчете или в Allure TestOps
 
 ---
 
 ## <img width="3%" title="Allure Report" src="media/icons/Allure_Report.svg"/> [Allure-отчет](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/allure/)
 После выполнения сборки в Jenkins формируется отчет в Allure.  
-В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="IntelliJ IDEA" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
+В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="Allure Report" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
+
+На основной странице отображается информация о пройденных тестах, тестовых наборах, статистика проходов, распределение по функционалу.  
+<img width="50%" title="Allure Overview" src="media/img/Allure_overview.png"/>
+
+Переходя на страницу конкретного тестового набора, можно увидеть список всех пройденных и непройденных тестов, а так же детали каждого теста.  
+<img width="50%" title="Allure Test" src="media/img/Allure_test.png"/>
+
+Помимо обычного логирования каждого шага теста, в конце каждого UI теста фиксируется следующая информация:  
+<img width="50%" title="Allure Detailed Finish" src="media/img/Allure_detailedFinish.png"/>
+- последний скриншот
+- исходных код страницы
+- логи в консоли браузера
+- видео всего теста
+
+А для каждого API теста запрос и ответ логируются в удобочитаемом виде:  
+<img width="50%" title="Allure Request" src="media/img/Allure_request.png"/>  
+<img width="50%" title="Allure Response" src="media/img/Allure_response.png"/>  
