@@ -1,5 +1,6 @@
 # Проект по автоматизации тестирования сайта сети аптек [<img width="20%" title="Rigla" src="media/icons/Rigla.svg"/>](https://rigla.ru/)
->Наши аптеки – это многопрофильные центры здоровья и красоты европейского уровня. Мы уверены, что успеха и благополучия гораздо легче добиться здоровым людям. Жить полной жизнью, использовать каждый шанс, который дает фортуна, – такова философия современного человека. Не тратьте времени на болезни, улыбайтесь людям, занимайтесь спортом, гордитесь собой, путешествуйте и уверенно идите к своей цели!
+>«Ригла» - сеть аптек. Большинство лекарств поставляется в аптеки сети «Ригла» крупнейшим в России фармацевтическим дистрибьютором «Протек», который закупает их напрямую у официальных производителей. «Ригла» располагает широким ассортиментом лекарственных средств, также здесь же можно найти и редкие рецептурные препараты и многое другое.
+
 
 ## :receipt: Содержание
 - [Используемый стек](#computer-используемый-стек)
@@ -13,8 +14,10 @@
   - [Удаленный запуск на Selenoid](#robot-удаленный-запуск-на-selenoid)
   - [Сборка в Jenkins](#-сборка-в-jenkins)
 - [Allure-отчет](#-allure-отчет)
-- [Allure-TestOps](#-allure-testops)
-- [Задача в JIRA](#-задача-в-jira)
+- [Интеграция с Allure TestOps](#-интеграция-с-allure-testops)
+  - [Результаты запуска из Jenkins](#-результаты-запуска-из-Jenkins)
+  - [Запуск из TestOps](#-запуск-из-testops)
+- [Интеграция с JIRA](#-интеграция-с-jira)
 - [Уведомления в Telegram](#-уведомления-в-telegram)
 - [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-тестов-в-selenoid)
 
@@ -213,13 +216,14 @@ ${TASK}
 ---
 
 ## <img width="3%" title="Allure Report" src="media/icons/Allure_Report.svg"/> [Allure-отчет](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/allure/)
+
 После выполнения сборки в Jenkins формируется отчет в Allure.  
 В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="Allure Report" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
 
-На основной странице отображается информация о пройденных тестах, тестовых наборах, статистика проходов, распределение по функционалу.  
+На основной странице представлена информация о пройденных тестах, тестовые наборы, статистика проходов, распределение по функционалу.  
 <img width="50%" title="Allure Overview" src="media/img/Allure_overview.png"/>
 
-Переходя на страницу конкретного тестового набора, можно увидеть список всех пройденных и непройденных тестов, а так же детали каждого теста.  
+Переходя на страницу конкретного тестового набора, можно увидеть список всех пройденных и непройденных тестов, а также детали каждого теста.  
 <img width="50%" title="Allure Test" src="media/img/Allure_test.png"/>
 
 Помимо обычного логирования каждого шага теста, в конце каждого UI теста фиксируется следующая информация:  
@@ -227,8 +231,35 @@ ${TASK}
 - последний скриншот
 - исходных код страницы
 - логи в консоли браузера
-- видео всего теста
+- видео прохождения теста
 
 А для каждого API теста запрос и ответ логируются в удобочитаемом виде:  
 <img width="50%" title="Allure Request" src="media/img/Allure_request.png"/>  
 <img width="50%" title="Allure Response" src="media/img/Allure_response.png"/>  
+
+---
+
+## <img width="3%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> [Интеграция с Allure TestOps](https://allure.autotests.cloud/project/4372/dashboards)
+
+### <img width="2%" title="Jenkins" src="media/icons/Jenkins.svg"/> <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> Результаты запуска из Jenkins
+Во время выполнения сборки в Jenkins данные о запуске, тестах и результатах появляются в Allure TestOps.  
+В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/>, при нажатии на который открывается страница связанного запуска (вкладка "Обзор").  
+<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_overview.png"/>  
+
+На вкладке "Результаты тестов" можно просмотреть результат выполнения каждого теста:  
+<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_testResult.png"/>
+
+А также добавить в запуск другие тесты, например, ручные, и пройти их:  
+<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_manual.png"/>
+
+### <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> <img width="2%" title="Jenkins" src="media/icons/Jenkins.svg"/> Запуск из TestOps
+Запустить тесты можно и из Allure TestOps:   
+<img width="50%" title="Allure TestOps Job Params" src="media/img/Allure_TestOps_job_params.png"/>  
+1. Перейти в [джобы проекта](https://allure.autotests.cloud/project/4372/jobs)
+2. Нажать кнопку "Запустить джобу"
+3. Задать название
+4. В разделе "Окружение" задать значения, если нужно задать отличные от значений по умолчанию
+5. Выбрать тесты для запуска
+6. Нажать "Отправить"
+
+---
