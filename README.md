@@ -15,8 +15,8 @@
   - [Сборка в Jenkins](#-сборка-в-jenkins)
 - [Allure-отчет](#-allure-отчет)
 - [Интеграция с Allure TestOps](#-интеграция-с-allure-testops)
-  - [Результаты запуска из Jenkins](#-результаты-запуска-из-Jenkins)
-  - [Запуск из TestOps](#-запуск-из-testops)
+  - [Результаты запуска из Jenkins](#результаты-запуска-из-jenkins)
+  - [Запуск из TestOps](#запуск-из-testops)
 - [Интеграция с JIRA](#-интеграция-с-jira)
 - [Уведомления в Telegram](#-уведомления-в-telegram)
 - [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-тестов-в-selenoid)
@@ -240,19 +240,18 @@ ${TASK}
 ---
 
 ## <img width="3%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> [Интеграция с Allure TestOps](https://allure.autotests.cloud/project/4372/dashboards)
-
-### <img width="2%" title="Jenkins" src="media/icons/Jenkins.svg"/> <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> Результаты запуска из Jenkins
+### Результаты запуска из Jenkins
 Во время выполнения сборки в Jenkins данные о запуске, тестах и результатах появляются в Allure TestOps.  
 В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/>, при нажатии на который открывается страница связанного запуска (вкладка "Обзор").  
 <img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_overview.png"/>  
 
 На вкладке "Результаты тестов" можно просмотреть результат выполнения каждого теста:  
-<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_testResult.png"/>
+<img width="50%" title="Allure TestOps Launch Test Results" src="media/img/Allure_TestOps_launch_testResult.png"/>
 
 А также добавить в запуск другие тесты, например, ручные, и пройти их:  
-<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_manual.png"/>
+<img width="50%" title="Allure TestOps Launch Manual Tests" src="media/img/Allure_TestOps_launch_manual.png"/>
 
-### <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/> <img width="2%" title="Jenkins" src="media/icons/Jenkins.svg"/> Запуск из TestOps
+### Запуск из TestOps
 Запустить тесты можно и из Allure TestOps:   
 <img width="50%" title="Allure TestOps Job Params" src="media/img/Allure_TestOps_job_params.png"/>  
 1. Перейти в [джобы проекта](https://allure.autotests.cloud/project/4372/jobs)
@@ -263,3 +262,24 @@ ${TASK}
 6. Нажать "Отправить"
 
 ---
+
+## <img width="3%" title="Jira" src="media/icons/Jira.webp"/> [Интеграция с JIRA](https://jira.autotests.cloud/secure/Dashboard.jspa)
+В проекте также реализована интеграция между Allure TestOps и Jira.  
+В ходе тестирования был заведен дефект на результат одного из API тестов: [HOMEWORK-1322](https://jira.autotests.cloud/browse/HOMEWORK-1322).  
+Этот дефект привязан к соответствующему тест-кейсу в TestOps:  
+<img width="50%" title="Jira ticket in case" src="media/img/Allure_TestOps_case_jira.png"/>
+
+Так же эту связь можно увидеть и в самом тикете в Jira:  
+<img width="50%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
+
+---
+
+## <img width="3%" title="Telegram" src="media/icons/Telegram.svg"/> Уведомления в Telegram
+После завершения сборки специальный бот, созданный в ```Telegram```, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.  
+<img width="50%" title="TG Notification" src="media/img/TG.png"/>
+
+---
+
+## <img width="3%" title="Selenoid" src="media/icons/Selenoid.svg"/> Видео примера запуска тестов в Selenoid
+Как уоминалось ранее, для каждого UI теста записывается видео его выполнения.  
+<img width="50%" title="Test Video" src="media/img/TestVideo.gif"/>
