@@ -272,14 +272,11 @@ ${TASK}
 Так же эту связь можно увидеть и в самом тикете в Jira:  
 <img width="50%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
 
----
 
 ## <img width="3%" title="Telegram" src="media/icons/Telegram.svg"/> Уведомления в Telegram
 После завершения сборки специальный бот, созданный в ```Telegram```, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.  
-<img width="50%" title="TG Notification" src="media/img/TG.png"/>
-
----
+<img width="30%" title="TG Notification" src="media/img/TG.png"/>
 
 ## <img width="3%" title="Selenoid" src="media/icons/Selenoid.svg"/> Видео примера запуска тестов в Selenoid
-Как уоминалось ранее, для каждого UI теста записывается видео его выполнения.  
+Как упоминалось ранее, для каждого UI теста записывается видео его выполнения.  
 <img width="50%" title="Test Video" src="media/img/TestVideo.gif"/>
