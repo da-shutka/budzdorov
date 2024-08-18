@@ -3,7 +3,10 @@ package web.pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
@@ -28,16 +31,14 @@ public class LoginPage {
 
     @Step("Дождаться загрузки всех попапов и удалить их")
     public void waitAndRemovePopups() {
-        sleep(2000);
-        if (advPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", advPopup);
-        }
-        if (cityPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cityPopup);
-        }
-        if (cookiePopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cookiePopup);
-        }
+        advPopup.shouldBe(visible, Duration.ofSeconds(2000));
+        executeJavaScript("arguments[0].remove();", advPopup);
+
+        cookiePopup.shouldBe(visible, Duration.ofSeconds(2000));
+        executeJavaScript("arguments[0].remove();", cookiePopup);
+
+        cityPopup.shouldBe(visible, Duration.ofSeconds(2000));
+        executeJavaScript("arguments[0].remove();", cityPopup);
     }
 
     @Step("Залогиниться с почтой и паролем")
