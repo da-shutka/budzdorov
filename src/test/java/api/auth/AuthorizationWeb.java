@@ -3,6 +3,7 @@ package api.auth;
 import io.qameta.allure.Step;
 import web.pages.MainPage;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AuthorizationWeb {
@@ -20,10 +21,16 @@ public class AuthorizationWeb {
     @Step("Получение {cookie} из установленных cookies")
     public static String getCookieByName(String cookie) {
         String cookieValue = "";
-        try {
-            cookieValue = getWebDriver().manage().getCookieNamed(cookie).getValue();
-        } catch (Exception e) {
-            System.out.println("Не удалось получить куки " + cookie);
+        int attempt = 0;
+        
+        while(cookieValue == "" && attempt <= 10) {
+            try {
+                sleep(5000);
+                cookieValue = getWebDriver().manage().getCookieNamed(cookie).getValue();
+            } catch (Exception e) {
+                System.out.println("Не удалось получить куки " + cookie);
+            }
+            attempt++;
         }
         return cookieValue;
     }

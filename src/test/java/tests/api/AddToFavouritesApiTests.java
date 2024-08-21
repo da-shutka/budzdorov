@@ -22,7 +22,6 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     public void addProductToFavouritesApi() {
         steps.addProductToFavourites(TestData.product);
         steps.checkProductIsInFavourites(TestData.product);
-
         steps.removeFromFavourites(TestData.product);
     }
 
