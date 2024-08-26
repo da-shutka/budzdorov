@@ -17,38 +17,38 @@ public class CartPage {
             clearCartButton = $(".cart__delete-icon use"),
             cartTitleEmpty = $(".cart-empty");
 
-    @Step("Проверить, что добавленный товар в корзине")
+    @Step("Проверить, что добавленный товар '{productId}' в корзине")
     public CartPage checkAddedProductIsInCart(String productId) {
         $("a.product-info-row__title[href*='/product/" + productId + "']").should(exist);
         return this;
     }
 
-    @Step("Проверить, что количество товара - {qty}")
+    @Step("Проверить, что в заголовке над корзиной количество товара - {qty}")
     public void checkProductQty(Integer qty) {
         String product = "";
         if (qty == 1) {
             product = "товар";
-        } else if (qty >= 2 && qty <= 5) {
+        } else {
             product = "товара";
-        } else product = "товаров";
+        };
 
         cartProductTitle.shouldHave(text(qty + " " + product));
         productQty.shouldHave(attribute("_value", qty.toString()));
     }
 
-    @Step("Увеличить количество товара в корзине")
+    @Step("Нажать на +, чтобы увеличить количество товара в корзине")
     public CartPage increaseProductCount() {
         executeJavaScript("arguments[0].click();", plusButton);
         return this;
     }
 
-    @Step("Уменьшить количество товара в корзине")
+    @Step("Нажать на -, чтобы уменьшить количество товара в корзине")
     public CartPage decreaseProductCount() {
         executeJavaScript("arguments[0].click();", minusButton);
         return this;
     }
 
-    @Step("Удалить товар из корзины")
+    @Step("Нажать на X у товара, чтобы удалить товар из корзины")
     public CartPage deleteProductFromCart() {
         actions().moveToElement(deleteProductButton).clickAndHold().release().perform();
         return this;
@@ -60,7 +60,7 @@ public class CartPage {
         cartTitleEmpty.shouldHave(text("Корзина пустая"));
     }
 
-    @Step("Очистить корзину")
+    @Step("Нажать 'Очистить корзину'")
     public CartPage clearCart() {
         actions().moveToElement(clearCartButton).clickAndHold().release().perform();
         return this;

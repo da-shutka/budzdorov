@@ -24,6 +24,7 @@ public class FavouritesWebTests extends TestBaseWeb {
         productPage
                 .openPage(TestData.product)
                 .addProductToFavourites()
+                .openFavourites()
                 .checkAddedProductIsInFavourites(TestData.product);
     }
 
@@ -36,6 +37,7 @@ public class FavouritesWebTests extends TestBaseWeb {
         productPage
                 .openPage(TestData.product)
                 .addProductToFavourites()
+                .openFavourites()
                 .removeProductFromFavourites(TestData.product)
                 .checkFavouritesIsEmpty();
     }

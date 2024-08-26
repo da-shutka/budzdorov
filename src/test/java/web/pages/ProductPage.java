@@ -22,7 +22,7 @@ public class ProductPage {
             cart = $(".minicart-top__link"),
             plusButton = $$("button.product-change-qty__btn").get(1);
 
-    @Step("Открыть страницу товара {productId}")
+    @Step("Открыть страницу товара '{productId}' по ссылке https://www.rigla.ru/product/{productId}")
     public ProductPage openPage(String productId) {
         open("/product/" + productId);
         waitAndRemovePopups();
@@ -41,21 +41,25 @@ public class ProductPage {
         executeJavaScript("arguments[0].remove();", cityPopup);
     }
 
-    @Step("Добавить товар в Избранное")
+    @Step("Нажать на сердечко у товара, чтобы добавить товар в Избранное")
     public ProductPage addProductToFavourites() {
         favButton.click();
         return this;
     }
 
-    @Step("Проверить, что товар {productId} добавлен в Избранное")
-    public void checkAddedProductIsInFavourites(String productId) {
+    @Step("Нажать на сердечко, чтобы открыть список избранных товаров")
+    public ProductPage openFavourites() {
         executeJavaScript("arguments[0].click();", favIcon);
+        return this;
+    }
+
+    @Step("Проверить, что товар '{productId}' добавлен в Избранное")
+    public void checkAddedProductIsInFavourites(String productId) {
         $("a.wish-list__list-item-info-text[href*='/product/" + productId + "']").should(exist);
     }
 
-    @Step("Удалить товар {productId} из Избранного")
+    @Step("Нажать X у товара '{productId}', чтобы удалить из Избранного")
     public ProductPage removeProductFromFavourites(String productId) {
-        executeJavaScript("arguments[0].click();", favIcon);
         $("a.wish-list__list-item-info-text[href*='/product/" + productId + "']")
                 .parent()
                 .sibling(0)
@@ -63,18 +67,18 @@ public class ProductPage {
         return this;
     }
 
-    @Step("Проверить, что список в Избранном пуст")
+    @Step("Проверить, что список избранных товаров пуст")
     public void checkFavouritesIsEmpty() {
         favList.shouldHave(text("Избранных товаров нет"));
     }
 
-    @Step("Добавить товар в корзину")
+    @Step("Нажать кнопку 'В корзину'")
     public ProductPage addProductToCart() {
         addToCartButton.click();
         return this;
     }
 
-    @Step("Открыть корзину")
+    @Step("Нажать значок корзины")
     public void openCart() {
         sleep(3000);
         executeJavaScript("arguments[0].click();", cart);

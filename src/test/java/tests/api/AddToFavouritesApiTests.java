@@ -54,6 +54,6 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Story("API: Добавление товара в список избранного")
     @DisplayName("Проверка добавления товара в избранное без авторизации")
     public void addProductToFavouritesWithoutCookieApi() {
-        steps.addProductToFavouritesNoSessionGuid(TestData.product);
+        steps.checkAddProductToFavouritesNoSessionGuid(TestData.product);
     }
 }

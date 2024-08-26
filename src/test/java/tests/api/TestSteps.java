@@ -13,7 +13,7 @@ import static api.specs.RiglaSpec.*;
 
 public class TestSteps {
 
-    @Step("Добавить товар {productId} в избранное")
+    @Step("Добавить товар '{productId}' в избранное")
     public void addProductToFavourites(String productId) {
         ItemModel productItem = new ItemModel();
         productItem.setSku(productId);
@@ -30,7 +30,7 @@ public class TestSteps {
                 .spec(responseSpecWithStatusCode200);
     }
 
-    @Step("Проверить, что товар {productId} добавлен в избранное")
+    @Step("Проверить, что товар '{productId}' добавлен в избранное и его количество равно 1")
     public void checkProductIsInFavourites(String productId) {
         FavouritesModel response = given(requestSpec)
                 .cookies("RIGLA_WEB_SESSION_GUID", AuthorizationWeb.sessionGuidForApi)
@@ -45,7 +45,7 @@ public class TestSteps {
         assertThat(response.getItems()).extracting(ItemModel::getQty).first().isEqualTo("1");
     }
 
-    @Step("Проверить пустой список избранного")
+    @Step("Проверить, что список избранных товаров пуст")
     public void checkFavouritesListIsEmpty() {
         FavouritesModel response = given(requestSpec)
                 .cookies("RIGLA_WEB_SESSION_GUID", AuthorizationWeb.sessionGuidForApi)
@@ -58,8 +58,9 @@ public class TestSteps {
         assertThat(response.getItems().length).isEqualTo(0);
     }
 
-    @Step("Добавить товар {productId} в избранное, в запросе отсутствует RIGLA_WEB_SESSION_GUID")
-    public void addProductToFavouritesNoSessionGuid(String productId) {
+    @Step("Проверить, что при добавлении товара '{productId}' в избранное, получаем ошибку 'Доступ запрещён.', " +
+            "когда в запросе отсутствует RIGLA_WEB_SESSION_GUID")
+    public void checkAddProductToFavouritesNoSessionGuid(String productId) {
         ItemModel productItem = new ItemModel();
         productItem.setSku(productId);
 
@@ -77,7 +78,7 @@ public class TestSteps {
         assertThat(response.getMessage()).isEqualTo("Доступ запрещён.");
     }
 
-    @Step("Удалить товар из избранного {productId}")
+    @Step("Удалить товар '{productId}' из избранного")
     public void removeFromFavourites(String productId) {
         given(requestSpec)
                 .cookies("RIGLA_WEB_SESSION_GUID", AuthorizationWeb.sessionGuidForApi)
@@ -87,8 +88,9 @@ public class TestSteps {
                 .spec(responseSpecWithStatusCode200);
     }
 
-    @Step("Неуспешно удалить товар из избранного {productId}")
-    public void unsuccessfullyRemoveFromFavourites(String productId) {
+    @Step("Проверить, что при удалении несуществующего товара '{productId}' из избранного " +
+            "получаем ошибку 'Wishlist item with sku %1 not found'")
+    public void checkDeleteNonexistingProductFromFavourites(String productId) {
         NotFoundModel response = given(requestSpec)
                 .cookies("RIGLA_WEB_SESSION_GUID", AuthorizationWeb.sessionGuidForApi)
                 .when()
@@ -101,8 +103,9 @@ public class TestSteps {
         assertThat(response.getParameters()).extracting(String::toString).first().isEqualTo(productId);
     }
 
-    @Step("Удалить товар из избранного, в запросе отсутствует RIGLA_WEB_SESSION_GUID")
-    public void deleteProductFromFavouritesNoSessionGuid(String productId) {
+    @Step("Проверить, что при удалении товара '{productId}' из избранного, получаем ошибку 'Доступ запрещён.', " +
+            "когда в запросе отсутствует RIGLA_WEB_SESSION_GUID")
+    public void checkDeleteProductFromFavouritesNoSessionGuid(String productId) {
         AccessDeniedModel response = given(requestSpec)
                 .when()
                 .delete("/V1/wishlist/items/" + productId)
@@ -113,7 +116,7 @@ public class TestSteps {
         assertThat(response.getMessage()).isEqualTo("Доступ запрещён.");
     }
 
-    @Step("Проверить, что несколько товаров присутствуют в избранном")
+    @Step("Проверить, что несколько товаров '{productId}' и '{product2Id}' присутствуют в избранном")
     public void checkProductsAreInFavourites(String productId, String product2Id) {
         FavouritesModel response = given(requestSpec)
                 .cookies("RIGLA_WEB_SESSION_GUID", AuthorizationWeb.sessionGuidForApi)
@@ -130,7 +133,8 @@ public class TestSteps {
         assertThat(response.getItems()).extracting(ItemModel::getQty).element(1).isEqualTo("1");
     }
 
-    @Step("Проверить пустой список избранного, в запросе отсутствует RIGLA_WEB_SESSION_GUID")
+    @Step("Проверить, что при получении списка избранного, получаем ошибку 'Доступ запрещён.', " +
+            "когда в запросе отсутствует RIGLA_WEB_SESSION_GUID")
     public void checkFavouritesListNoSessionGuid() {
         AccessDeniedModel response = given(requestSpec)
                 .when()

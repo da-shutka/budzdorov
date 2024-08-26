@@ -23,6 +23,7 @@ public class LoginWebTests extends TestBaseWeb {
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
+                .checkUserIsInPersonalAccount()
                 .checkUserIsLoggedIn();
     }
 
@@ -35,6 +36,7 @@ public class LoginWebTests extends TestBaseWeb {
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
+                .checkUserStayedAtTheSamePage()
                 .checkCaptchaValidateError();
     }
 
@@ -47,6 +49,7 @@ public class LoginWebTests extends TestBaseWeb {
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword("", TestData.password)
+                .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyLogin();
     }
 
@@ -59,6 +62,7 @@ public class LoginWebTests extends TestBaseWeb {
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword(TestData.email, "")
+                .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyPassword();
     }
 
@@ -72,6 +76,7 @@ public class LoginWebTests extends TestBaseWeb {
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword("test","test")
+                .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInIncorrectCredentials();
     }
 }
