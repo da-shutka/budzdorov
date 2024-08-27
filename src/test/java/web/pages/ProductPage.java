@@ -38,12 +38,13 @@ public class ProductPage {
 
     @Step("Нажать на сердечко у товара, чтобы добавить товар в Избранное")
     public ProductPage addProductToFavourites() {
-        favButton.click();
+        favButton.scrollTo().click();
         return this;
     }
 
     @Step("Нажать на сердечко, чтобы открыть список избранных товаров")
     public ProductPage openFavourites() {
+        executeJavaScript("window.scrollTo(0, 0);");
         executeJavaScript("arguments[0].click();", favIcon);
         return this;
     }
@@ -69,18 +70,20 @@ public class ProductPage {
 
     @Step("Нажать кнопку 'В корзину'")
     public ProductPage addProductToCart() {
-        addToCartButton.click();
+        addToCartButton.scrollTo().click();
         return this;
     }
 
     @Step("Нажать значок корзины")
     public void openCart() {
         sleep(5000);
+        executeJavaScript("window.scrollTo(0, 0);");
         executeJavaScript("arguments[0].click();", cart);
     }
 
     @Step("Нажать на + для добавления товара в корзину")
     public ProductPage addMultipleQtyProductToCart() {
+        plusButton.scrollTo();
         executeJavaScript("arguments[0].click();", plusButton);
         return this;
     }
