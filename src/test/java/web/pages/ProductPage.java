@@ -26,6 +26,7 @@ public class ProductPage {
     @Step("Открыть страницу товара '{productId}' по ссылке https://www.rigla.ru/product/{productId}")
     public ProductPage openPage(String productId) {
         open("/product/" + productId);
+        sleep(5000);
         productIdOnPage.shouldHave(text(productId), Duration.ofSeconds(10));
         return this;
     }
