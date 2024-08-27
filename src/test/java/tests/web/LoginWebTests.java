@@ -22,7 +22,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void successfulLoginFromLoginPage(){
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkUserIsInPersonalAccount()
                 .checkUserIsLoggedIn();
@@ -36,7 +35,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginDueToCaptchaFromLoginPage(){
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkUserStayedAtTheSamePage()
                 .checkCaptchaValidateError();
@@ -50,7 +48,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginWithoutEmailFromLoginPage(){
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword("", TestData.password)
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyLogin();
@@ -64,7 +61,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginWithoutPasswordFromLoginPage(){
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, "")
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyPassword();
@@ -79,7 +75,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void unsuccessfulLoginWithIncorrectCredentialsFromLoginPage(){
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword("test","test")
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInIncorrectCredentials();
