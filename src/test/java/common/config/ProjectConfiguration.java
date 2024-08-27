@@ -1,8 +1,8 @@
 package common.config;
 
 import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import common.TestData;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class ProjectConfiguration {
         TestData.password = webConfig.password();
 
         if (webConfig.isRemote()) {
-            Configuration.remote ="https://"
+            Configuration.remote = "https://"
                     + webConfig.selenoidLogin()
                     + ":"
                     + webConfig.selenoidPassword()

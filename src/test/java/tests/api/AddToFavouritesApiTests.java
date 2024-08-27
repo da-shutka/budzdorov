@@ -1,12 +1,12 @@
 package tests.api;
 
+import common.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import common.TestData;
 
 @DisplayName("API тесты на добавление товара в избранное")
 @Tag("API")
@@ -19,7 +19,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Добавление товара в список избранного")
     @DisplayName("Проверка добавления товара в избранное")
-    public void addProductToFavouritesApi() {
+    public void checkProductAddingToFavouritesApiTest() {
         steps.addProductToFavourites(TestData.product);
         steps.checkProductIsInFavourites(TestData.product);
         steps.removeFromFavourites(TestData.product);
@@ -30,7 +30,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Добавление товара в список избранного")
     @DisplayName("Проверка добавления несуществующего товара в избранное")
-    public void addNonexistingProductToFavouritesApi() {
+    public void checkNonexistingProductAddingToFavouritesApiTest() {
         steps.addProductToFavourites(TestData.unknownProduct);
         steps.checkFavouritesListIsEmpty();
     }
@@ -40,7 +40,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Добавление товара в список избранного")
     @DisplayName("Проверка добавления товара в избранное дважды")
-    public void addProductToFavouritesTwiceApi() {
+    public void checkProductAddingToFavouritesTwiceApiTest() {
         steps.addProductToFavourites(TestData.product);
         steps.addProductToFavourites(TestData.product);
         steps.checkProductIsInFavourites(TestData.product);
@@ -53,7 +53,7 @@ public class AddToFavouritesApiTests extends TestBaseApi {
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("API: Добавление товара в список избранного")
     @DisplayName("Проверка добавления товара в избранное без авторизации")
-    public void addProductToFavouritesWithoutCookieApi() {
+    public void checkProductAddingToFavouritesWithoutCookieApiTest() {
         steps.checkAddProductToFavouritesNoSessionGuid(TestData.product);
     }
 }

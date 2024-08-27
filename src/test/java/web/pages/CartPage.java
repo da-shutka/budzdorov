@@ -30,7 +30,8 @@ public class CartPage {
             product = "товар";
         } else {
             product = "товара";
-        };
+        }
+        ;
         sleep(3000);
         cartProductTitle.shouldHave(text(qty + " " + product));
         productQty.shouldHave(attribute("_value", qty.toString()));

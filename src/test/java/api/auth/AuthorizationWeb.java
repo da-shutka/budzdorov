@@ -22,8 +22,8 @@ public class AuthorizationWeb {
     public static String getCookieByName(String cookie) {
         String cookieValue = "";
         int attempt = 0;
-        
-        while(cookieValue == "" && attempt <= 10) {
+
+        while (cookieValue == "" && attempt <= 10) {
             try {
                 sleep(5000);
                 cookieValue = getWebDriver().manage().getCookieNamed(cookie).getValue();

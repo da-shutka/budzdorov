@@ -1,15 +1,15 @@
 package tests.api;
 
 import api.auth.AuthorizationWeb;
-import io.qameta.allure.Step;
 import api.models.AccessDeniedModel;
 import api.models.FavouritesModel;
 import api.models.ItemModel;
 import api.models.NotFoundModel;
+import io.qameta.allure.Step;
 
+import static api.specs.RiglaSpec.*;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static api.specs.RiglaSpec.*;
 
 public class TestSteps {
 

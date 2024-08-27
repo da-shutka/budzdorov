@@ -22,7 +22,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Добавление товара в корзину")
     @DisplayName("Проверка добавления товара в корзину")
-    public void addProductToCart() {
+    public void checkProductAddingToCartTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
@@ -36,7 +36,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Добавление товара в корзину")
     @DisplayName("Проверка добавления двух одинаковых товаров в корзину через +")
-    public void addTheSameProductsToCart() {
+    public void checkTheSameProductsAddingToCartTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
@@ -52,7 +52,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Изменение товара в корзине")
     @DisplayName("Проверка увеличения количества товара в корзине")
-    public void increaseProductCountInCart() {
+    public void checkProductCountIncreasingInCartTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
@@ -68,7 +68,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Изменение товара в корзине")
     @DisplayName("Проверка уменьшения количества товара в корзине")
-    public void decreaseProductCountInCart() {
+    public void checkProductCountDecreasingInCartTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
@@ -84,7 +84,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Удаление товара из корзины")
     @DisplayName("Проверка удаления товара из корзины")
-    public void removeProductFromCart() {
+    public void checkProductDeletingFromCartTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
@@ -100,7 +100,7 @@ public class CartWebTests extends TestBaseWeb {
     @Feature("Реализация корзины пользователя с товарами")
     @Story("UI: Удаление товара из корзины")
     @DisplayName("Проверка очистки корзины")
-    public void clearCart() {
+    public void checkCartClearingTest() {
         productPage
                 .openPage(TestData.product)
                 .waitAndRemovePopups()
