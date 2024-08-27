@@ -74,6 +74,7 @@ public class ProductPage {
     public ProductPage addProductToCart() {
         //addToCartButton.scrollTo().click();
         actions().moveToElement(addToCartButton).build().perform();
+        addToCartButton.click();
         return this;
     }
 
