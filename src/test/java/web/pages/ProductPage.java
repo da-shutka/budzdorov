@@ -1,8 +1,10 @@
 package web.pages;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import web.pages.components.PopupComponent;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
@@ -11,9 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class ProductPage {
 
     private final SelenideElement
-            advPopup = $("div.popup-metadata-popup__paranja"),
-            cityPopup = $("div.city-confirm"),
-            cookiePopup = $("div.cookie-confirmation-notice"),
+            productIdOnPage = $(".product-cart__toolbar-code-number"),
             favIcon = $("div.wishlist-icon"),
             favButton = $("button.wishlist-product-control.product-content-basket__button-like"),
             favList = $("div.wish-list__products-count"),
@@ -21,29 +21,19 @@ public class ProductPage {
             cart = $(".minicart-top__link"),
             plusButton = $$("button.product-change-qty__btn").get(1);
 
+    PopupComponent popup = new PopupComponent();
+
     @Step("Открыть страницу товара '{productId}' по ссылке https://www.rigla.ru/product/{productId}")
     public ProductPage openPage(String productId) {
         open("/product/" + productId);
-        waitAndRemovePopups();
+        productIdOnPage.shouldHave(text(productId), Duration.ofSeconds(10));
         return this;
     }
 
     @Step("Дождаться загрузки всех попапов и удалить их")
-    public void waitAndRemovePopups() {
-        Selenide.sleep(2000);
-        if (advPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", advPopup);
-        }
-
-        Selenide.sleep(2000);
-        if (cookiePopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cookiePopup);
-        }
-
-        Selenide.sleep(2000);
-        if (cityPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cityPopup);
-        }
+    public ProductPage waitAndRemovePopups() {
+        popup.waitAndRemovePopups();
+        return this;
     }
 
     @Step("Нажать на сердечко у товара, чтобы добавить товар в Избранное")
@@ -85,7 +75,7 @@ public class ProductPage {
 
     @Step("Нажать значок корзины")
     public void openCart() {
-        sleep(3000);
+        sleep(5000);
         executeJavaScript("arguments[0].click();", cart);
     }
 

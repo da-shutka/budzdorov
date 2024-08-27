@@ -1,8 +1,8 @@
 package web.pages;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import web.pages.components.PopupComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,14 +10,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class LoginPage {
 
     private final SelenideElement
-            advPopup = $("div.popup-metadata-popup__paranja"),
-            cityPopup = $("div.city-confirm"),
-            cookiePopup = $("div.cookie-confirmation-notice"),
+
             headerContainer = $("div.header-wrapper__i"),
             loginInput = $("input[name='userLogin']"),
             passwordInput = $("input[name='userPassword']"),
             submitButton = $("button.send__btn"),
             notification = $("p.notificator-container__notification-text");
+
+    PopupComponent popup = new PopupComponent();
 
     @Step("Открыть страницу логина по ссылке https://www.rigla.ru/customer/account/login")
     public LoginPage openPage() {
@@ -28,21 +28,9 @@ public class LoginPage {
     }
 
     @Step("Дождаться загрузки всех попапов (баннер, куки и город) и удалить их")
-    public void waitAndRemovePopups() {
-        Selenide.sleep(2000);
-        if (advPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", advPopup);
-        }
-
-        Selenide.sleep(2000);
-        if (cookiePopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cookiePopup);
-        }
-
-        Selenide.sleep(2000);
-        if (cityPopup.exists()) {
-            executeJavaScript("arguments[0].remove();", cityPopup);
-        }
+    public LoginPage waitAndRemovePopups() {
+        popup.waitAndRemovePopups();
+        return this;
     }
 
     @Step("Ввести почту '{email}' и пароль '{password}' и нажать 'Вход'")

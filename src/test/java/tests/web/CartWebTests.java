@@ -1,5 +1,6 @@
 package tests.web;
 
+import common.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import web.pages.CartPage;
 import web.pages.ProductPage;
-import common.TestData;
 
 @DisplayName("UI тесты на корзину")
 @Tag("WEB")
@@ -25,6 +25,7 @@ public class CartWebTests extends TestBaseWeb {
     public void addProductToCart() {
         productPage
                 .openPage(TestData.product)
+                .waitAndRemovePopups()
                 .addProductToCart()
                 .openCart();
         cartPage.checkAddedProductIsInCart(TestData.product);
@@ -38,6 +39,7 @@ public class CartWebTests extends TestBaseWeb {
     public void addTheSameProductsToCart() {
         productPage
                 .openPage(TestData.product)
+                .waitAndRemovePopups()
                 .addMultipleQtyProductToCart()
                 .openCart();
         cartPage
@@ -53,6 +55,7 @@ public class CartWebTests extends TestBaseWeb {
     public void increaseProductCountInCart() {
         productPage
                 .openPage(TestData.product)
+                .waitAndRemovePopups()
                 .addProductToCart()
                 .openCart();
         cartPage
@@ -68,6 +71,7 @@ public class CartWebTests extends TestBaseWeb {
     public void decreaseProductCountInCart() {
         productPage
                 .openPage(TestData.product)
+                .waitAndRemovePopups()
                 .addMultipleQtyProductToCart()
                 .openCart();
         cartPage
@@ -83,6 +87,7 @@ public class CartWebTests extends TestBaseWeb {
     public void removeProductFromCart() {
         productPage
                 .openPage(TestData.product)
+                .waitAndRemovePopups()
                 .addProductToCart()
                 .openCart();
         cartPage
@@ -98,8 +103,11 @@ public class CartWebTests extends TestBaseWeb {
     public void clearCart() {
         productPage
                 .openPage(TestData.product)
-                .addProductToCart()
+                .waitAndRemovePopups()
+                .addProductToCart();
+        productPage
                 .openPage(TestData.product2)
+                .waitAndRemovePopups()
                 .addProductToCart()
                 .openCart();
         cartPage

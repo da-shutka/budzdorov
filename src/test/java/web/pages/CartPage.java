@@ -13,8 +13,8 @@ public class CartPage {
             productQty = $(".product-change-qty__qty"),
             plusButton = $$("button.product-change-qty__btn").get(1),
             minusButton = $$("button.product-change-qty__btn").first(),
-            deleteProductButton = $(".cart-row__delete use"),
-            clearCartButton = $(".cart__delete-icon use"),
+            deleteProductButton = $(".cart-row__delete-icon"),
+            clearCartButton = $(".cart-title-close"),
             cartTitleEmpty = $(".cart-empty");
 
     @Step("Проверить, что добавленный товар '{productId}' в корзине")
@@ -31,7 +31,7 @@ public class CartPage {
         } else {
             product = "товара";
         };
-
+        sleep(3000);
         cartProductTitle.shouldHave(text(qty + " " + product));
         productQty.shouldHave(attribute("_value", qty.toString()));
     }
@@ -62,7 +62,7 @@ public class CartPage {
 
     @Step("Нажать 'Очистить корзину'")
     public CartPage clearCart() {
-        actions().moveToElement(clearCartButton).clickAndHold().release().perform();
+        clearCartButton.click();
         return this;
     }
 }
