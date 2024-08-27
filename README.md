@@ -121,8 +121,8 @@ gradle clean web
 -Demail="test_email@gmail.com"
 -Dpassword="123456"
 -DisRemote=false
--Dbrowser=firefox
--DbrowserVersion=125
+-Dbrowser=chrome
+-DbrowserVersion=127
 -DbrowseSize=1600x1200
 
 gradle clean api
@@ -143,9 +143,8 @@ gradle clean api
   - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Но т.к. на сайте невозможно обмануть капчу и несколько тестов помечены как Disabled, то можно указать абсолютно любые логин и пароль
 - настройки браузера
   - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в remote.properties). В Selenoid ферме представлены не все браузеры и не все версии, поэтому указывать можно только те, которые там имеются:
-    - chrome: 99, 100, 113, 114, 120, 121, 122, 123, 124, 125, 126
-    - firefox: 122, 123, 124, 125
-    - opera: 106, 107, 108, 109
+    - chrome: 125, 126
+
 
 ```java
 gradle clean test
@@ -163,8 +162,8 @@ gradle clean web
 -DwdHost=selenoid.autotests.cloud
 -DselenoidLogin=...
 -DselenoidPassword=...
--Dbrowser=firefox
--DbrowserVersion=122
+-Dbrowser=chrome
+-DbrowserVersion=125
 -DbrowseSize=1920x1200
 
 gradle clean api
