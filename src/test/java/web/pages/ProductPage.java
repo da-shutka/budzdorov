@@ -39,8 +39,8 @@ public class ProductPage {
 
     @Step("Нажать на сердечко у товара, чтобы добавить товар в Избранное")
     public ProductPage addProductToFavourites() {
-        //favButton.scrollTo().click();
         actions().moveToElement(favButton).build().perform();
+        favButton.click();
         return this;
     }
 
@@ -72,7 +72,6 @@ public class ProductPage {
 
     @Step("Нажать кнопку 'В корзину'")
     public ProductPage addProductToCart() {
-        //addToCartButton.scrollTo().click();
         actions().moveToElement(addToCartButton).build().perform();
         addToCartButton.click();
         return this;
@@ -87,7 +86,6 @@ public class ProductPage {
 
     @Step("Нажать на + для добавления товара в корзину")
     public ProductPage addMultipleQtyProductToCart() {
-        //plusButton.scrollTo();
         actions().moveToElement(plusButton).build().perform();
         executeJavaScript("arguments[0].click();", plusButton);
         return this;
