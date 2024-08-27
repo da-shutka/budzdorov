@@ -23,13 +23,13 @@ public class LoginPage {
     public LoginPage openPage() {
         open("/customer/account/login");
         $("h2").shouldHave(text("Вход на сайт"));
-        //waitAndRemovePopups();
         return this;
     }
 
     @Step("Дождаться загрузки всех попапов (баннер, куки и город) и удалить их")
-    public void waitAndRemovePopups() {
+    public LoginPage waitAndRemovePopups() {
         popup.waitAndRemovePopups();
+        return this;
     }
 
     @Step("Ввести почту '{email}' и пароль '{password}' и нажать 'Вход'")
