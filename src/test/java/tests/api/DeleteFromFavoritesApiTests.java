@@ -16,8 +16,8 @@ import static common.TestData.getTestData;
 public class DeleteFromFavoritesApiTests extends TestBaseApi {
 
     final TestStepsApi apiSteps = new TestStepsApi();
-    String product = getTestData("product");
-    String unknownProduct = getTestData("unknownProduct");
+    final String product = getTestData("product");
+    final String unknownProduct = getTestData("unknownProduct");
 
     @Test
     @WithToken

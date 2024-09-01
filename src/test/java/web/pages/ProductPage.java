@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -13,7 +11,7 @@ public class ProductPage {
 
     private final SelenideElement
             productIdOnPage = $(".product-cart__toolbar-code-number"),
-            extraProductsList = $(".product-slider__list"),
+            dataServerRendered = $("[id='app'].app._show-top-bar:not([data-server-rendered='true'])"),
             favIcon = $("div.wishlist-icon"),
             favButton = $("button.wishlist-product-control.product-content-basket__button-like"),
             favList = $("div.wish-list__products-count"),
@@ -27,8 +25,8 @@ public class ProductPage {
     public ProductPage openPage(String productId) {
         open("/product/" + productId);
         productIdOnPage.shouldHave(text(productId));
-        Configuration.timeout = 60000;
-        extraProductsList.should(exist);
+        Configuration.timeout = 30000;
+        dataServerRendered.should(exist);
         Configuration.timeout = 10000;
         return this;
     }

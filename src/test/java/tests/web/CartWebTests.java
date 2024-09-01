@@ -17,8 +17,8 @@ public class CartWebTests extends TestBaseWeb {
 
     final ProductPage productPage = new ProductPage();
     final CartPage cartPage = new CartPage();
-    String product = getTestData("product");
-    String product2 = getTestData("product2");
+    final String product = getTestData("product");
+    final String product2 = getTestData("product2");
 
     @Test
     @Owner("Дарья Петрова")

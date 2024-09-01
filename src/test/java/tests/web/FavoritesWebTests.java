@@ -1,6 +1,5 @@
 package tests.web;
 
-import common.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -18,14 +17,14 @@ import static common.TestData.getTestData;
 public class FavoritesWebTests extends TestBaseWeb {
 
     final ProductPage productPage = new ProductPage();
-    String product = getTestData("product");
+    final String product = getTestData("product");
 
     @Test
     @Owner("Дарья Петрова")
     @Feature("Реализация списка избранных товаров пользователя")
     @Story("UI: Добавление товара в список избранного")
     @DisplayName("Проверка добавления товара в избранное")
-    public void checkProductAddingToFavoritesTest() throws IOException {
+    public void checkProductAddingToFavoritesTest() {
         productPage
                 .openPage(product)
                 .addProductToFavourites()

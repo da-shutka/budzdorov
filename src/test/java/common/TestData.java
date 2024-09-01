@@ -8,8 +8,8 @@ import java.util.Properties;
 
 public class TestData {
 
-    public static String email = System.getProperty("email", "petrova.tpu@gmail.com");
-    public static String password = System.getProperty("password", "123456");
+    public static final String email = System.getProperty("email", "petrova.tpu@gmail.com");
+    public static final String password = System.getProperty("password", "123456");
 
     public static String getTestData(String product) {
         ClassLoader classLoader = TestData.class.getClassLoader();

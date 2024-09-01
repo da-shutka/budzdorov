@@ -1,8 +1,10 @@
 package web.pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -13,12 +15,16 @@ public class LoginPage {
             loginInput = $("input[name='userLogin']"),
             passwordInput = $("input[name='userPassword']"),
             submitButton = $("button.send__btn"),
-            notification = $("p.notificator-container__notification-text");
+            notification = $("p.notificator-container__notification-text"),
+            wishListPanel = $(".wish-list.popup-right");
 
     @Step("Открыть страницу логина по ссылке https://www.rigla.ru/customer/account/login")
     public LoginPage openPage() {
         open("/customer/account/login");
         $("h2").shouldHave(text("Вход на сайт"));
+        Configuration.timeout = 30000;
+        wishListPanel.should(exist);
+        Configuration.timeout = 10000;
         return this;
     }
 

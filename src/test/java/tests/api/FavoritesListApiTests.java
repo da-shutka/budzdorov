@@ -16,8 +16,8 @@ import static common.TestData.getTestData;
 public class FavoritesListApiTests extends TestBaseApi {
 
     final TestStepsApi steps = new TestStepsApi();
-    String product = getTestData("product");
-    String product2 = getTestData("product2");
+    final String product = getTestData("product");
+    final String product2 = getTestData("product2");
 
     @Test
     @WithToken
