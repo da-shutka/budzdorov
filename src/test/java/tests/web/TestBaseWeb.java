@@ -1,27 +1,58 @@
 package tests.web;
 
+import api.auth.AuthorizationApi;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import common.config.ProjectConfiguration;
+import common.config.AuthConfig;
+import common.config.WebConfig;
 import common.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import io.restassured.RestAssured;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static common.config.ConfigReader.webConfig;
+import java.util.Map;
 
 public class TestBaseWeb {
 
     @BeforeAll
     static void settingsBeforeAll() {
-        ProjectConfiguration projectConfiguration = new ProjectConfiguration(webConfig);
-        projectConfiguration.webConfig();
+        WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
+        AuthConfig authConfig = ConfigFactory.create(AuthConfig.class, System.getProperties());
+
+        Configuration.baseUrl = webConfig.baseUrl();
+        Configuration.browser = webConfig.browser();
+        Configuration.browserVersion = webConfig.browserVersion();
+        Configuration.browserSize = webConfig.browserSize();
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.timeout = 10000;
+
+        if (webConfig.isRemote()) {
+            Configuration.remote = "https://"
+                    + authConfig.selenoidLogin()
+                    + ":"
+                    + authConfig.selenoidPassword()
+                    + "@"
+                    + webConfig.wdHost()
+                    + "/wd/hub";
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
     }
 
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+        AuthorizationApi.addCookies();
     }
 
     @AfterEach
@@ -29,8 +60,8 @@ public class TestBaseWeb {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        if (webConfig.isRemote()) {
-            Attach.addVideo(webConfig.wdHost());
+        if (System.getProperty("isRemote") != null && System.getProperty("isRemote").equals("true")) {
+            Attach.addVideo(System.getProperty("wdHost"));
         }
         Selenide.closeWebDriver();
     }

@@ -11,22 +11,22 @@ import static io.restassured.RestAssured.with;
 
 public class RiglaSpec {
 
-    public static RequestSpecification requestSpec = with()
+    public static final RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
             .contentType(ContentType.JSON)
             .log().all();
 
-    public static ResponseSpecification responseSpecWithStatusCode200 = new ResponseSpecBuilder()
+    public static final ResponseSpecification responseSpecWithStatusCode200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(LogDetail.ALL)
             .build();
 
-    public static ResponseSpecification responseSpecWithStatusCode403 = new ResponseSpecBuilder()
+    public static final ResponseSpecification responseSpecWithStatusCode403 = new ResponseSpecBuilder()
             .expectStatusCode(403)
             .log(LogDetail.ALL)
             .build();
 
-    public static ResponseSpecification responseSpecWithStatusCode404 = new ResponseSpecBuilder()
+    public static final ResponseSpecification responseSpecWithStatusCode404 = new ResponseSpecBuilder()
             .expectStatusCode(404)
             .log(LogDetail.ALL)
             .build();

@@ -25,14 +25,12 @@ public class CartPage {
 
     @Step("Проверить, что в заголовке над корзиной количество товара - {qty}")
     public void checkProductQty(Integer qty) {
-        String product = "";
+        String product;
         if (qty == 1) {
             product = "товар";
         } else {
             product = "товара";
         }
-        ;
-        sleep(3000);
         cartProductTitle.shouldHave(text(qty + " " + product));
         productQty.shouldHave(attribute("_value", qty.toString()));
     }
@@ -57,7 +55,6 @@ public class CartPage {
 
     @Step("Проверить, что корзина пуста")
     public void checkCartIsEmpty() {
-        sleep(3000);
         cartTitleEmpty.shouldHave(text("Корзина пустая"));
     }
 

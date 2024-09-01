@@ -23,25 +23,9 @@ public interface WebConfig extends Config {
     @DefaultValue("127")
     String browserVersion();
 
-    @Key("email")
-    String email();
-
-    @Key("password")
-    String password();
-
-    @Key("selenoidLogin")
-    String selenoidLogin();
-
-    @Key("selenoidPassword")
-    String selenoidPassword();
-
     @Key("baseUrl")
-    @DefaultValue("https://www.rigla.ru/")
+    @DefaultValue("https://www.rigla.ru")
     String baseUrl();
-
-    @Key("baseURI")
-    @DefaultValue("https://www.rigla.ru/rest")
-    String baseURI();
 
     @Key("isRemote")
     @DefaultValue("false")

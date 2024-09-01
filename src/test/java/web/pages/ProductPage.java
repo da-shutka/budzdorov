@@ -1,39 +1,35 @@
 package web.pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import web.pages.components.PopupComponent;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ProductPage {
 
     private final SelenideElement
             productIdOnPage = $(".product-cart__toolbar-code-number"),
+            extraProductsList = $(".product-slider__list"),
             favIcon = $("div.wishlist-icon"),
             favButton = $("button.wishlist-product-control.product-content-basket__button-like"),
             favList = $("div.wish-list__products-count"),
             addToCartButton = $(".product-add-to-cart__btn"),
             cart = $(".minicart-top__link"),
-            plusButton = $$("button.product-change-qty__btn").get(1);
+            plusButton = $$("button.product-change-qty__btn").get(1),
+            cartCount = $(".minicart-top__link .counter__number");
 
-    PopupComponent popup = new PopupComponent();
 
     @Step("Открыть страницу товара '{productId}' по ссылке https://www.rigla.ru/product/{productId}")
     public ProductPage openPage(String productId) {
         open("/product/" + productId);
-        sleep(5000);
-        productIdOnPage.shouldHave(text(productId), Duration.ofSeconds(10));
-        return this;
-    }
-
-    @Step("Дождаться загрузки всех попапов и удалить их")
-    public ProductPage waitAndRemovePopups() {
-        popup.waitAndRemovePopups();
+        productIdOnPage.shouldHave(text(productId));
+        Configuration.timeout = 60000;
+        extraProductsList.should(exist);
+        Configuration.timeout = 10000;
         return this;
     }
 
@@ -66,28 +62,28 @@ public class ProductPage {
     }
 
     @Step("Проверить, что список избранных товаров пуст")
-    public void checkFavouritesIsEmpty() {
+    public void checkFavouritesListIsEmpty() {
         favList.shouldHave(text("Избранных товаров нет"));
     }
 
     @Step("Нажать кнопку 'В корзину'")
-    public ProductPage addProductToCart() {
-        actions().moveToElement(addToCartButton).build().perform();
+    public ProductPage addProductToCart(int count) {
         addToCartButton.click();
+        cartCount.shouldHave(attribute("innerText", " " + String.valueOf(count) + " "));
         return this;
     }
 
     @Step("Нажать значок корзины")
     public void openCart() {
-        sleep(5000);
         executeJavaScript("window.scrollTo(0, 0);");
         executeJavaScript("arguments[0].click();", cart);
     }
 
     @Step("Нажать на + для добавления товара в корзину")
-    public ProductPage addMultipleQtyProductToCart() {
+    public ProductPage addMultipleQtyProductToCart(int count) {
         actions().moveToElement(plusButton).build().perform();
         executeJavaScript("arguments[0].click();", plusButton);
+        cartCount.shouldHave(text(String.valueOf(count)), Duration.ofSeconds(5));
         return this;
     }
 }

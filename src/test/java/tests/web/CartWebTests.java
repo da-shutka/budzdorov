@@ -1,6 +1,5 @@
 package tests.web;
 
-import common.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -10,12 +9,16 @@ import org.junit.jupiter.api.Test;
 import web.pages.CartPage;
 import web.pages.ProductPage;
 
+import static common.TestData.getTestData;
+
 @DisplayName("UI тесты на корзину")
 @Tag("WEB")
 public class CartWebTests extends TestBaseWeb {
 
-    ProductPage productPage = new ProductPage();
-    CartPage cartPage = new CartPage();
+    final ProductPage productPage = new ProductPage();
+    final CartPage cartPage = new CartPage();
+    String product = getTestData("product");
+    String product2 = getTestData("product2");
 
     @Test
     @Owner("Дарья Петрова")
@@ -24,11 +27,10 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка добавления товара в корзину")
     public void checkProductAddingToCartTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addProductToCart()
+                .openPage(product)
+                .addProductToCart(1)
                 .openCart();
-        cartPage.checkAddedProductIsInCart(TestData.product);
+        cartPage.checkAddedProductIsInCart(product);
     }
 
     @Test
@@ -38,12 +40,11 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка добавления двух одинаковых товаров в корзину через +")
     public void checkTheSameProductsAddingToCartTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addMultipleQtyProductToCart()
+                .openPage(product)
+                .addMultipleQtyProductToCart(2)
                 .openCart();
         cartPage
-                .checkAddedProductIsInCart(TestData.product)
+                .checkAddedProductIsInCart(product)
                 .checkProductQty(2);
     }
 
@@ -54,9 +55,8 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка увеличения количества товара в корзине")
     public void checkProductCountIncreasingInCartTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addProductToCart()
+                .openPage(product)
+                .addProductToCart(1)
                 .openCart();
         cartPage
                 .increaseProductCount()
@@ -70,9 +70,8 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка уменьшения количества товара в корзине")
     public void checkProductCountDecreasingInCartTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addMultipleQtyProductToCart()
+                .openPage(product)
+                .addMultipleQtyProductToCart(2)
                 .openCart();
         cartPage
                 .decreaseProductCount()
@@ -86,9 +85,8 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка удаления товара из корзины")
     public void checkProductDeletingFromCartTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addProductToCart()
+                .openPage(product)
+                .addProductToCart(1)
                 .openCart();
         cartPage
                 .deleteProductFromCart()
@@ -102,13 +100,11 @@ public class CartWebTests extends TestBaseWeb {
     @DisplayName("Проверка очистки корзины")
     public void checkCartClearingTest() {
         productPage
-                .openPage(TestData.product)
-                .waitAndRemovePopups()
-                .addProductToCart();
+                .openPage(product)
+                .addProductToCart(1);
         productPage
-                .openPage(TestData.product2)
-                .waitAndRemovePopups()
-                .addProductToCart()
+                .openPage(product2)
+                .addProductToCart(2)
                 .openCart();
         cartPage
                 .clearCart()

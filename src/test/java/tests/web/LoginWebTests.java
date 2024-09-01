@@ -4,6 +4,7 @@ import common.TestData;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -12,20 +13,22 @@ import web.pages.LoginPage;
 
 @DisplayName("UI тесты на авторизацию")
 @Tag("WEB")
+@Slf4j
 public class LoginWebTests extends TestBaseWeb {
 
-    LoginPage loginPage = new LoginPage();
+    final LoginPage loginPage = new LoginPage();
 
     @Test
-    @Disabled
+    //@Disabled
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Успешный логин")
     @DisplayName("Проверка успешного логина")
     public void checkSuccessfulLoginFromLoginPageTest() {
+        log.info("email: {}", TestData.email);
+        log.info("password: {}", TestData.password);
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkUserIsInPersonalAccount()
                 .checkUserIsLoggedIn();
@@ -39,7 +42,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void checkUnsuccessfulLoginDueToCaptchaFromLoginPageTest() {
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)
                 .checkUserStayedAtTheSamePage()
                 .checkCaptchaValidateError();
@@ -53,7 +55,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void checkUnsuccessfulLoginWithoutEmailFromLoginPageTest() {
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword("", TestData.password)
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyLogin();
@@ -67,7 +68,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void checkUnsuccessfulLoginWithoutPasswordFromLoginPageTest() {
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword(TestData.email, "")
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInEmptyPassword();
@@ -82,7 +82,6 @@ public class LoginWebTests extends TestBaseWeb {
     public void checkUnsuccessfulLoginWithIncorrectCredentialsFromLoginPageTest() {
         loginPage
                 .openPage()
-                .waitAndRemovePopups()
                 .loginWithEmailAndPassword("test", "test")
                 .checkUserStayedAtTheSamePage()
                 .checkUserIsNotLoggedInIncorrectCredentials();
