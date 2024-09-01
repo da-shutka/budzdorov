@@ -19,14 +19,12 @@ public class LoginWebTests extends TestBaseWeb {
     final LoginPage loginPage = new LoginPage();
 
     @Test
-    //@Disabled
+    @Disabled
     @Owner("Дарья Петрова")
     @Feature("Реализация логина на сайте")
     @Story("UI: Успешный логин")
     @DisplayName("Проверка успешного логина")
     public void checkSuccessfulLoginFromLoginPageTest() {
-        log.info("email: {}", TestData.email);
-        log.info("password: {}", TestData.password);
         loginPage
                 .openPage()
                 .loginWithEmailAndPassword(TestData.email, TestData.password)

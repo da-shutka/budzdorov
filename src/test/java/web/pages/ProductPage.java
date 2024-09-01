@@ -69,7 +69,7 @@ public class ProductPage {
     @Step("Нажать кнопку 'В корзину'")
     public ProductPage addProductToCart(int count) {
         addToCartButton.click();
-        cartCount.shouldHave(attribute("innerText", " " + String.valueOf(count) + " "));
+        cartCount.shouldHave(attribute("innerText", " " + count + " "));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ProductPage {
     public ProductPage addMultipleQtyProductToCart(int count) {
         actions().moveToElement(plusButton).build().perform();
         executeJavaScript("arguments[0].click();", plusButton);
-        cartCount.shouldHave(text(String.valueOf(count)), Duration.ofSeconds(5));
+        cartCount.shouldHave(attribute("innerText", " " + count + " "));
         return this;
     }
 }
