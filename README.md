@@ -3,12 +3,8 @@
 
 
 ## :receipt: Содержание
-- [Используемый стек](#computer-используемый-стек)
 - [Описание проекта](#bookmark_tabs-описание-проекта)
 - [Реализованные проверки](#heavy_check_mark-реализованные-проверки)
-  - [UI тесты](#pencil2-ui-тесты)
-  - [API тесты](#pencil2-api-тесты)
-  - [Ручные тесты](#pencil2-ручные-тесты)
 - [Запуск тестов](#large_blue_circle-запуск-тестов)
   - [Локальный запуск](#desktop_computer-локальный-запуск)
   - [Удаленный запуск на Selenoid](#robot-удаленный-запуск-на-selenoid)
@@ -21,7 +17,9 @@
 - [Уведомления в Telegram](#-уведомления-в-telegram)
 - [Видео примера запуска тестов в Selenoid](#-видео-примера-запуска-тестов-в-selenoid)
 
-## :computer: Используемый стек
+
+## :bookmark_tabs: Описание проекта
+
 <p align="center">
 <a href="https://www.jetbrains.com/idea/"><img width="6%" title="IntelliJ IDEA" src="media/icons/Intelij_IDEA.svg"/></a>
 <a href="https://www.java.com/"><img width="6%" title="Java" src="media/icons/Java.svg"/></a>
@@ -36,9 +34,6 @@
 <a href="https://telegram.org/"><img width="6%" title="Telegram" src="media/icons/Telegram.svg"/></a>
 <a href="https://www.atlassian.com/ru/software/jira"><img width="6%" title="Jira" src="media/icons/Jira.webp"/></a>
 </p>
-
-
-## :bookmark_tabs: Описание проекта
 
 - Проект состоит из UI, API и ручных тестов
 - Ручные тесты добавлены в ```Allure TestOps```
@@ -59,8 +54,12 @@
 
 ## :heavy_check_mark: Реализованные проверки
 
-### :pencil2: UI тесты
+<details>
+
+<summary>:pencil2: UI тесты</summary>
+
 :green_circle: Авторизация
+
 - Проверка успешного логина
 - Проверка неуспешного логина из-за капчи
 - Проверка неуспешного логина без почты
@@ -78,8 +77,13 @@
 - Проверка уменьшения количества товара в корзине
 - Проверка удаления товара из корзины
 - Проверка очистки корзины
+- 
+</details>
 
-### :pencil2: API тесты
+<details>
+
+<summary>:pencil2: API тесты</summary>
+
 :green_circle: Избранные товары
 - Проверка добавления товара в избранное
 - Проверка добавления несуществующего товара в избранное
@@ -92,9 +96,16 @@
 - Проверка получения пустого списка товаров из избранного
 - Проверка получения списка товаров из избранного без авторизации
 
-### :pencil2: Ручные тесты
+</details>
+
+<details>
+
+<summary>:pencil2: Ручные тесты</summary>
+
 - Проверка успешного логина с почтой и паролем
 - Проверка получения списка избранных товаров с несколькими товарами
+
+</details>
 
 ---
 
@@ -107,12 +118,15 @@
   - ```web``` - UI тесты
   - ```api``` - API тесты
 - где запускать браузер
-  -  ```-DisRemote=false``` - или не указывать этот параметр совсем, т.к. значение по умолчанию - false (== запускаем браузер локально)
+  -  ```-DisRemote=false``` - или не указывать параметр, т.к. значение по умолчанию - false (== запускаем браузер на своей машине)
 - логин и пароль
-  - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Но т.к. на сайте невозможно обмануть капчу и несколько тестов помечены как Disabled, то можно указать абсолютно любые логин и пароль
+  - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Значения по умолчанию уже заданы в коде.
 - настройки браузера
   - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в local.properties)
 
+<details>
+
+<summary>Примеры запуска</summary>
 
 ```java
 gradle clean test -Demail="test_email@gmail.com" -Dpassword="123456"
@@ -128,6 +142,9 @@ gradle clean web
 gradle clean api
 ```
 
+</details>
+
+
 ## :robot: Удаленный запуск на Selenoid
 Параметры для удаленного запуска в терминале IDE:
 - тег/задача
@@ -136,22 +153,21 @@ gradle clean api
   - ```api``` - API тесты
 - где запускать браузер
   -  ```-DisRemote=true```
-  -  ```-DwdHost=selenoid.autotests.cloud```
-  -  ```-DselenoidLogin=...```
-  -  ```-DselenoidPassword=...```
+  -  ```-DselenoidLogin=...``` - можно задать в auth.properties
+  -  ```-DselenoidPassword=...``` - можно задать в auth.properties
 - логин и пароль
-  - ```-Demail``` и ```-Dpassword``` - только для UI тестов. Но т.к. на сайте невозможно обмануть капчу и несколько тестов помечены как Disabled, то можно указать абсолютно любые логин и пароль
+  - ```-Demail``` и ```-Dpassword``` - нужны только для UI тестов на авторизацию
 - настройки браузера
-  - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в remote.properties). В Selenoid ферме представлены не все браузеры и не все версии, поэтому указывать можно только те, которые там имеются:
+  - ```-Dbrowser```, ```-DbrowserVersion```, ```-DbrowseSize``` - если не указывать, то используются значения по умолчанию (заданные в remote.properties). В Selenoid ферме представлены не все браузеры и не все версии, поэтому указывать можно только те, которые там имеются (+ те, с которыми приложение стабильно работает):
     - chrome: 125, 126
 
+<details>
+
+<summary>Примеры запуска</summary>
 
 ```java
 gradle clean test
 -DisRemote=true
--Demail="test_email@gmail.com"
--Dpassword="123456"
--DwdHost=selenoid.autotests.cloud
 -DselenoidLogin=...
 -DselenoidPassword=...
 
@@ -173,11 +189,14 @@ gradle clean api
 -DselenoidPassword=...
 ```
 
+</details>
+
+
 ## <img width="3%" title="Jenkins" src="media/icons/Jenkins.svg"/> [Сборка в Jenkins](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
-<img width="50%" title="Jenkins" src="media/img/Jenkins_job.png"/>
+<img width="100%" title="Jenkins" src="media/img/Jenkins_job.png"/>
 
 ### :writing_hand: Параметры сборки в Jenkins, задаваемые пользователем
-<img width="50%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>
+<img width="100%" title="Jenkins" src="media/img/Jenkins_job_params.png"/>
 
 ```TASK``` - название задачи. Значение по умолчанию - ```test```  
 ```WDHOST``` - адрес удаленного браузера (selenoid). Значение - ```selenoid.autotests.cloud```  
@@ -192,6 +211,10 @@ gradle clean api
 ```SELENOID_LOGIN``` - логин пользователя для Selenoid фермы  
 ```SELENOID_PASSWORD``` - пароль пользователя для Selenoid фермы  
 
+<details>
+
+<summary>Команда</summary>
+
 ```java
 clean
 ${TASK}
@@ -205,6 +228,9 @@ ${TASK}
 -DselenoidPassword=${SELENOID_PASSWORD}
 -DisRemote="true"
 ```
+
+</details>
+
 
 :gear: Запуск в Jenkins:
 1. Открыть [сборку](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/)
@@ -221,21 +247,21 @@ ${TASK}
 В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок [<img width="2%" title="Allure Report" src="media/icons/Allure_Report.svg"/>](https://jenkins.autotests.cloud/job/C27-petrova_di-rigla/20/allure/), при нажатии на который открывается страница со сформированным html-отчетом и тестовой документацией.
 
 На основной странице представлена информация о пройденных тестах, тестовые наборы, статистика проходов, распределение по функционалу.  
-<img width="50%" title="Allure Overview" src="media/img/Allure_overview.png"/>
+<img width="100%" title="Allure Overview" src="media/img/Allure_overview.png"/>
 
 Переходя на страницу конкретного тестового набора, можно увидеть список всех пройденных и непройденных тестов, а также детали каждого теста.  
-<img width="50%" title="Allure Test" src="media/img/Allure_test.png"/>
+<img width="100%" title="Allure Test" src="media/img/Allure_test.png"/>
 
 Помимо обычного логирования каждого шага теста, в конце каждого UI теста фиксируется следующая информация:  
-<img width="50%" title="Allure Detailed Finish" src="media/img/Allure_detailedFinish.png"/>
+<img width="100%" title="Allure Detailed Finish" src="media/img/Allure_detailedFinish.png"/>
 - последний скриншот
-- исходных код страницы
+- исходный код страницы
 - логи в консоли браузера
 - видео прохождения теста
 
 А для каждого API теста запрос и ответ логируются в удобочитаемом виде:  
-<img width="50%" title="Allure Request" src="media/img/Allure_request.png"/>  
-<img width="50%" title="Allure Response" src="media/img/Allure_response.png"/>  
+<img width="100%" title="Allure Request" src="media/img/Allure_request.png"/>  
+<img width="100%" title="Allure Response" src="media/img/Allure_response.png"/>  
 
 ---
 
@@ -243,17 +269,17 @@ ${TASK}
 ### Результаты запуска из Jenkins
 Во время выполнения сборки в Jenkins данные о запуске, тестах и результатах появляются в Allure TestOps.  
 В блоке ```История сборок/Build History``` напротив конкретной сборки отображается значок <img width="2%" title="Allure TestOps" src="media/icons/Allure_TestOps.svg"/>, при нажатии на который открывается страница связанного [запуска](https://allure.autotests.cloud/launch/41256) (вкладка "Обзор").  
-<img width="50%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_overview.png"/>  
+<img width="100%" title="Allure TestOps Launch Overview" src="media/img/Allure_TestOps_launch_overview.png"/>  
 
 На вкладке "Результаты тестов" можно просмотреть [результат](https://allure.autotests.cloud/launch/41256/tree?treeId=8630) выполнения каждого теста:  
-<img width="50%" title="Allure TestOps Launch Test Results" src="media/img/Allure_TestOps_launch_testResult.png"/>
+<img width="100%" title="Allure TestOps Launch Test Results" src="media/img/Allure_TestOps_launch_testResult.png"/>
 
 А также добавить в запуск другие тесты, например, ручные, и пройти их:  
-<img width="50%" title="Allure TestOps Launch Manual Tests" src="media/img/Allure_TestOps_launch_manual.png"/>
+<img width="100%" title="Allure TestOps Launch Manual Tests" src="media/img/Allure_TestOps_launch_manual.png"/>
 
 ### Запуск из TestOps
 Запустить тесты можно и из Allure TestOps:   
-<img width="50%" title="Allure TestOps Job Params" src="media/img/Allure_TestOps_job_params.png"/>  
+<img width="100%" title="Allure TestOps Job Params" src="media/img/Allure_TestOps_job_params.png"/>  
 1. Перейти в [джобы проекта](https://allure.autotests.cloud/project/4372/jobs)
 2. Нажать кнопку "Запустить джобу"
 3. Задать название
@@ -267,16 +293,16 @@ ${TASK}
 В проекте также реализована интеграция между Allure TestOps и Jira.  
 В ходе тестирования был заведен дефект на результат одного из API тестов: [HOMEWORK-1322](https://jira.autotests.cloud/browse/HOMEWORK-1322).  
 Этот дефект привязан к соответствующему тест-кейсу в TestOps:  
-<img width="50%" title="Jira ticket in case" src="media/img/Allure_TestOps_case_jira.png"/>
+<img width="100%" title="Jira ticket in case" src="media/img/Allure_TestOps_case_jira.png"/>
 
 Так же эту связь можно увидеть и в самом тикете в Jira:  
-<img width="50%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
+<img width="100%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
 
 
 ## <img width="3%" title="Telegram" src="media/icons/Telegram.svg"/> Уведомления в Telegram
 После завершения сборки специальный бот, созданный в ```Telegram```, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.  
-<img width="30%" title="TG Notification" src="media/img/TG.png"/>
+<img width="50%" title="TG Notification" src="media/img/TG.png"/>
 
 ## <img width="3%" title="Selenoid" src="media/icons/Selenoid.svg"/> Видео примера запуска тестов в Selenoid
 Как упоминалось ранее, для каждого UI теста записывается видео его выполнения.  
-<img width="50%" title="Test Video" src="media/img/TestVideo.gif"/>
+<img width="100%" title="Test Video" src="media/img/TestVideo.gif"/>
