@@ -13,7 +13,6 @@ import web.pages.LoginPage;
 
 @DisplayName("UI тесты на авторизацию")
 @Tag("WEB")
-@Slf4j
 public class LoginWebTests extends TestBaseWeb {
 
     final LoginPage loginPage = new LoginPage();

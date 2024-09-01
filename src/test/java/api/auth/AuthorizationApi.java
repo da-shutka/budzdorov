@@ -1,6 +1,5 @@
 package api.auth;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Cookie;
 
 import static api.specs.RiglaSpec.requestSpec;
@@ -9,7 +8,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
 
-@Slf4j
 public class AuthorizationApi {
 
     public static final String RIGLA_WEB_SESSION_GUID = "RIGLA_WEB_SESSION_GUID";
