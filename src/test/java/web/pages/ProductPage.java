@@ -32,26 +32,26 @@ public class ProductPage {
     }
 
     @Step("Нажать на сердечко у товара, чтобы добавить товар в Избранное")
-    public ProductPage addProductToFavourites() {
+    public ProductPage addProductToFavorites() {
         actions().moveToElement(favButton).build().perform();
         favButton.click();
         return this;
     }
 
     @Step("Нажать на сердечко, чтобы открыть список избранных товаров")
-    public ProductPage openFavourites() {
+    public ProductPage openFavorites() {
         executeJavaScript("window.scrollTo(0, 0);");
         executeJavaScript("arguments[0].click();", favIcon);
         return this;
     }
 
     @Step("Проверить, что товар '{productId}' добавлен в Избранное")
-    public void checkAddedProductIsInFavourites(String productId) {
+    public void checkAddedProductIsInFavorites(String productId) {
         $("a.wish-list__list-item-info-text[href*='/product/" + productId + "']").should(exist);
     }
 
     @Step("Нажать X у товара '{productId}', чтобы удалить из Избранного")
-    public ProductPage removeProductFromFavourites(String productId) {
+    public ProductPage removeProductFromFavorites(String productId) {
         $("a.wish-list__list-item-info-text[href*='/product/" + productId + "']")
                 .parent()
                 .sibling(0)
@@ -60,7 +60,7 @@ public class ProductPage {
     }
 
     @Step("Проверить, что список избранных товаров пуст")
-    public void checkFavouritesListIsEmpty() {
+    public void checkFavoritesListIsEmpty() {
         favList.shouldHave(text("Избранных товаров нет"));
     }
 

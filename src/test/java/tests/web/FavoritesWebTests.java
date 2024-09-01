@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import web.pages.ProductPage;
 
-import java.io.IOException;
-
 import static common.TestData.getTestData;
 
 @DisplayName("UI тесты на избранное")
@@ -27,9 +25,9 @@ public class FavoritesWebTests extends TestBaseWeb {
     public void checkProductAddingToFavoritesTest() {
         productPage
                 .openPage(product)
-                .addProductToFavourites()
-                .openFavourites()
-                .checkAddedProductIsInFavourites(product);
+                .addProductToFavorites()
+                .openFavorites()
+                .checkAddedProductIsInFavorites(product);
     }
 
     @Test
@@ -40,9 +38,9 @@ public class FavoritesWebTests extends TestBaseWeb {
     public void checkProductDeletingFromFavoritesTest() {
         productPage
                 .openPage(product)
-                .addProductToFavourites()
-                .openFavourites()
-                .removeProductFromFavourites(product)
-                .checkFavouritesListIsEmpty();
+                .addProductToFavorites()
+                .openFavorites()
+                .removeProductFromFavorites(product)
+                .checkFavoritesListIsEmpty();
     }
 }
