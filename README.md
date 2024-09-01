@@ -293,10 +293,10 @@ ${TASK}
 В проекте также реализована интеграция между Allure TestOps и Jira.  
 В ходе тестирования был заведен дефект на результат одного из API тестов: [HOMEWORK-1322](https://jira.autotests.cloud/browse/HOMEWORK-1322).  
 Этот дефект привязан к соответствующему тест-кейсу в TestOps:  
-<img width="100%" title="Jira ticket in case" src="media/img/Allure_TestOps_case_jira.png"/>
+<img width="70%" title="Jira ticket in case" src="media/img/Allure_TestOps_case_jira.png"/>
 
 Так же эту связь можно увидеть и в самом тикете в Jira:  
-<img width="100%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
+<img width="70%" title="Cases in Jira ticket" src="media/img/Allure_TestOps_jira_case.png"/>
 
 
 ## <img width="3%" title="Telegram" src="media/icons/Telegram.svg"/> Уведомления в Telegram
@@ -305,4 +305,4 @@ ${TASK}
 
 ## <img width="3%" title="Selenoid" src="media/icons/Selenoid.svg"/> Видео примера запуска тестов в Selenoid
 Как упоминалось ранее, для каждого UI теста записывается видео его выполнения.  
-<img width="100%" title="Test Video" src="media/img/TestVideo.gif"/>
+<img width="80%" title="Test Video" src="media/img/TestVideo.gif"/>
